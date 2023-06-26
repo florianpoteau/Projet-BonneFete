@@ -29,3 +29,8 @@ Pour ce site web, il vous faut
 <li>Composer</li>
 <li>Xampp</li>
 <li>MySQL</li>
+
+## Collaborateurs
+
+Florian Poteau https://github.com/florianpoteau
+Marc-Antoine Taisant https://github.com/Weldarn
