@@ -33,4 +33,5 @@ Pour ce site web, il vous faut
 ## Collaborateurs
 
 Florian Poteau https://github.com/florianpoteau
+<br>
 Marc-Antoine Taisant https://github.com/Weldarn
