@@ -15,9 +15,9 @@ class PostController
         $this->postModel = new PostModel();
     }
 
-    public function getIndex()
+    public function getInscription()
     {
         $posts = $this->postModel->getAll();
-        require_once 'Views/inscriptions/inscription.php';
+        require_once 'Views/post/index.php';
     }
 }

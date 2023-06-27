@@ -9,6 +9,7 @@ class Profil
     private $email_profil;
     private $mdp_profil;
     private $nom_profil;
+    private $id_role;
 
     public function __construct()
     {
@@ -33,6 +34,10 @@ class Profil
     {
         return $this->nom_profil;
     }
+    public function getRole()
+    {
+        return $this->id_role;
+    }
 
     public function setId($id_profil)
     {
@@ -52,5 +57,9 @@ class Profil
     public function setNomProfil($nom_profil)
     {
         $this->nom_profil = $nom_profil;
+    }
+    public function setRole($id_role)
+    {
+        $this->id_role = $id_role;
     }
 }

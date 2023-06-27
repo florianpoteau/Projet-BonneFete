@@ -27,13 +27,13 @@ class ProfilModel
 
     public function createUser($user)
     {
-        $password = password_hash($user['mdp_profil'], PASSWORD_DEFAULT);
+
         try {
             $query = $this->connection->getPdo()->prepare('INSERT INTO profil (email_profil, mdp_profil, nom_profil, id_role) VALUES (:email_profil, :mdp_profil, :nom_profil, 2)');
             $query->execute([
                 'email_profil' => $user['email_profil'],
                 'nom_profil' => $user['nom_profil'],
-                'mdp_profil' => $password
+                'mdp_profil' => $user['mdp_profil']
             ]);
             return "Bien enregistré";
         } catch (\PDOException $e) {

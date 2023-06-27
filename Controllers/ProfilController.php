@@ -5,6 +5,7 @@ namespace App\Controllers;
 require_once 'Models/ProfilModel.php';
 
 use App\Models\ProfilModel;
+use App\Models\Profil;
 
 class ProfilController
 {
@@ -18,13 +19,13 @@ class ProfilController
     public function getIndex()
     {
         $profils = $this->profilModel->getAll();
-        require_once 'Views/inscriptions/inscription.php';
+        require_once 'Views/post/inscription.php';
     }
 
     public function postRegister()
     {
         $user = $_POST;
-        $message = $this->profilModel->createUser($user);
-        echo $message;
+        $this->profilModel->createUser($user);
+        header('Location: ../post/inscription');
     }
 }
