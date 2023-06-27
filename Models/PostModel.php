@@ -19,7 +19,7 @@ class PostModel
     }
     public function getAll()
     {
-        $query = $this->connection->getPdo()->prepare("SELECT id_post,description_post FROM post");
+        $query = $this->connection->getPdo()->prepare("SELECT idpost,description_post FROM post");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Post");
     }

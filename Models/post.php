@@ -5,8 +5,8 @@ namespace App\Models;
 
 class Post
 {
-    private $id;
-    private $description;
+    private $idpost;
+    private $description_post;
 
     public function __construct()
     {
@@ -14,21 +14,21 @@ class Post
 
     public function getId()
     {
-        return $this->id;
+        return $this->idpost;
     }
 
     public function getDescription()
     {
-        return $this->description;
+        return $this->description_post;
     }
 
-    public function setId($id)
+    public function setId($idpost)
     {
-        $this->id = $id;
+        $this->idpost = $idpost;
     }
 
-    public function setDescription($description)
+    public function setDescription($description_post)
     {
-        $this->description = $description;
+        $this->description_post = $description_post;
     }
 }
