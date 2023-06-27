@@ -1,7 +1,5 @@
 RewriteEngine On
 
-# Ajoutez votre redirection ici
-
 RedirectMatch 301 ^/Projet-BonneFete/$ /Projet-BonneFete/post/index
 
 RewriteCond %{REQUEST_FILENAME} !-f

@@ -10,7 +10,7 @@ class Database
 
     public function __construct()
     {
-        $this->pdo = new PDO("mysql:host=localhost;dbname=", "root", "password");
+        $this->pdo = new PDO("mysql:host=localhost;dbname=", "", "");
     }
 
     public function getPdo()
