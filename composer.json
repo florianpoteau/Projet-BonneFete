@@ -1,0 +1,19 @@
+{
+    "name": "marco/bonnefete",
+    "type": "project",
+    "require": {
+        "twbs/bootstrap": "^5.3"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Marco\\Bonnefete\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Weldarn",
+            "email": "marc-antoine.t@hotmail.com"
+        }
+    ]
+}
