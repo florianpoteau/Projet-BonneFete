@@ -24,9 +24,9 @@ DROP TABLE IF EXISTS `profil`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `profil` (
   `id_profil` int NOT NULL AUTO_INCREMENT,
-  `email_profil` varchar(100) DEFAULT NULL,
-  `mdp_profil` varchar(50) DEFAULT NULL,
-  `nom_profil` varchar(30) DEFAULT NULL,
+  `email_profil` varchar(100) NOT NULL,
+  `mdp_profil` varchar(50) NOT NULL,
+  `nom_profil` varchar(30) NOT NULL,
   `id_role` int NOT NULL,
   PRIMARY KEY (`id_profil`),
   KEY `id_role_idx` (`id_role`),
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-27 10:29:49
+-- Dump completed on 2023-06-27 14:03:52
