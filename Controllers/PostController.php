@@ -18,6 +18,6 @@ class PostController
     public function getIndex()
     {
         $posts = $this->postModel->getAll();
-        require_once 'Views/posts/index.php';
+        require_once 'Views/inscriptions/inscription.php';
     }
 }
