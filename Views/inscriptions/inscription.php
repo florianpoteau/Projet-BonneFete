@@ -5,7 +5,7 @@ require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\head.php';
 ?>
 <h2>Inscription</h2>
 
-<form method="post" action="">
+<form method="post" action="../profil/index">
 
   <label for="nom_profil">Nom d'utilisateur:</label><br>
   <input type="text" id="nom_profil" name="nom_profil"><br>

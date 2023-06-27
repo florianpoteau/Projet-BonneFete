@@ -3,6 +3,7 @@
 namespace App;
 
 require_once 'Controllers/PostController.php';
+require_once 'Controllers/ProfilController.php';
 
 
 class Router

@@ -17,10 +17,27 @@ class ProfilModel
     {
         $this->connection = new Database();
     }
+
     public function getAll()
     {
-        $query = $this->connection->getPdo()->prepare("SELECT id_profil,email_profil, mdp_profil, nom_profil, FROM post");
+        $query = $this->connection->getPdo()->prepare("SELECT email_profil,nom_profil FROM profil");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Profil");
+    }
+
+    public function createUser($user)
+    {
+        $password = password_hash($user['mdp_profil'], PASSWORD_DEFAULT);
+        try {
+            $query = $this->connection->getPdo()->prepare('INSERT INTO profil (email_profil, mdp_profil, nom_profil, id_role) VALUES (:email_profil, :mdp_profil, :nom_profil, 2)');
+            $query->execute([
+                'email_profil' => $user['email_profil'],
+                'nom_profil' => $user['nom_profil'],
+                'mdp_profil' => $password
+            ]);
+            return "Bien enregistré";
+        } catch (\PDOException $e) {
+            return "une erreur est survenue";
+        }
     }
 }
