@@ -17,7 +17,7 @@ class PostController
 
     public function getIndex()
     {
-        $books = $this->postModel->getAll();
+        $posts = $this->postModel->getAll();
         require_once 'Views/posts/index.php';
     }
 }
