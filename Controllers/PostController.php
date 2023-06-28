@@ -14,4 +14,13 @@ class PostController
     {
         $this->postModel = new PostModel();
     }
+
+    public function getAccueil()
+    {
+        if (isset($_SESSION['nom_profil'])) {
+            // Un utilisateur est déjà connecté, redirigez vers une autre page
+            header('Location: ../Views/accueil');
+            exit();
+        }
+    }
 }

@@ -29,10 +29,14 @@ class ProfilController
         header('Location: ../profil/index');
     }
 
+
+
     public function getLogin()
     {
         require_once 'Views/post/connexion.php';
     }
+
+
 
     public function postLogin()
     {
