@@ -77,6 +77,8 @@ class ProfilModel
             ]);
             $userCo = $query->fetch(PDO::FETCH_ASSOC);
             $_SESSION['nom_profil'] = $nom;
+            require 'C:\xampp\htdocs\Projet-BonneFete\Views\post\accueil.php';
+            exit();
         } else {
             // Les informations d'identification sont incorrectes, affichez un message d'erreur
             echo "Nom d'utilisateur ou mot de passe incorrect";

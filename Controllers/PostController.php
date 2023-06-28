@@ -18,7 +18,6 @@ class PostController
     public function postAccueil()
     {
 
-        // Un utilisateur est déjà connecté, redirigez vers une autre page
         require_once 'Views/post/accueil.php';
     }
 }

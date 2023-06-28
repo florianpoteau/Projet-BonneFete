@@ -33,6 +33,7 @@ class ProfilController
 
     public function getLogin()
     {
+
         require_once 'Views/post/connexion.php';
     }
 
