@@ -15,12 +15,10 @@ class PostController
         $this->postModel = new PostModel();
     }
 
-    public function getAccueil()
+    public function postAccueil()
     {
-        if (isset($_SESSION['nom_profil'])) {
-            // Un utilisateur est déjà connecté, redirigez vers une autre page
-            header('Location: ../Views/accueil');
-            exit();
-        }
+
+        // Un utilisateur est déjà connecté, redirigez vers une autre page
+        require_once 'Views/post/accueil.php';
     }
 }
