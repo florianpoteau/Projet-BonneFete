@@ -19,7 +19,7 @@ class ProfilController
     public function getIndex()
     {
         $profils = $this->profilModel->getAll();
-        require_once 'Views/post/accueil';
+        require_once 'Views/post/inscription.php';
     }
 
     public function postRegister()
