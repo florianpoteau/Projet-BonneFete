@@ -2,6 +2,8 @@
 <title>Connexion</title>
 </head>
 <?php
+
+
 if (isset($_SESSION['nom_profil'])) {
     $nom_profil = $_SESSION['nom_profil'];
     echo "Connecté en tant que : " . $nom_profil;
@@ -20,6 +22,11 @@ if (isset($_SESSION['nom_profil'])) {
 
 
                         <form action="../profil/login" method="post">
+
+                            <div class="form-group" style="display: none;">
+                                <label for="id_profil">ID de profil:</label>
+                                <input type="hidden" id="id_profil" name="id_profil" value="<?php echo $_SESSION['id_profil']; ?>">
+                            </div>
 
                             <div class="form-group">
                                 <label for="nom_profil">Nom d'utilisateur:</label>

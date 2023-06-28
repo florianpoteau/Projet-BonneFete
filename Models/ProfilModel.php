@@ -4,6 +4,7 @@ namespace App\Models;
 
 require_once 'Database.php';
 require_once 'Models/Profil.php';
+require_once 'Models/Post.php';
 
 use App\Database;
 
@@ -20,9 +21,9 @@ class ProfilModel
 
     public function getAll()
     {
-        $query = $this->connection->getPdo()->prepare("SELECT nom_profil, mdp_profil FROM profil");
+        $query = $this->connection->getPdo()->prepare("SELECT description_post FROM post");
         $query->execute();
-        return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Profil");
+        return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Post");
     }
 
     public function createUser($user)
@@ -63,7 +64,7 @@ class ProfilModel
         $nom = $user['nom_profil'];
         $password = $user['mdp_profil'];
 
-        $query = $this->connection->getPdo()->prepare('SELECT mdp_profil FROM profil WHERE nom_profil = :nom_profil');
+        $query = $this->connection->getPdo()->prepare('SELECT id_profil, mdp_profil FROM profil WHERE nom_profil = :nom_profil');
         $query->execute([
             "nom_profil" => $nom
         ]);
@@ -71,16 +72,28 @@ class ProfilModel
 
         if ($result && password_verify($password, $result['mdp_profil'])) {
             // Les informations d'identification sont valides, connectez l'utilisateur
-            $query = $this->connection->getPdo()->prepare('SELECT nom_profil FROM profil WHERE nom_profil = :nom_profil');
+            $query = $this->connection->getPdo()->prepare('SELECT id_profil, nom_profil FROM profil WHERE nom_profil = :nom_profil');
             $query->execute([
                 "nom_profil" => $nom
             ]);
             $userCo = $query->fetch(PDO::FETCH_ASSOC);
             $_SESSION['nom_profil'] = $nom;
-            require 'C:\xampp\htdocs\Projet-BonneFete\Views\post\accueil.php';
+            header('Location: ../profil/accueil');
+            // require 'C:\xampp\htdocs\Projet-BonneFete\Views\post\accueil.php';
         } else {
             // Les informations d'identification sont incorrectes, affichez un message d'erreur
             echo "Nom d'utilisateur ou mot de passe incorrect";
         }
+    }
+
+    public function addPost($user)
+    {
+
+        $description = $user['description_post'];
+        $query = $this->connection->getPdo()->prepare('INSERT INTO post (description_post) VALUES(:description_post)');
+        $query->execute([
+            "description_post" => $description
+        ]);
+        header('Location: ../profil/accueil');
     }
 }

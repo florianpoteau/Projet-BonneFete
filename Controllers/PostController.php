@@ -14,10 +14,4 @@ class PostController
     {
         $this->postModel = new PostModel();
     }
-
-    public function postAccueil()
-    {
-
-        require_once 'Views/post/accueil.php';
-    }
 }

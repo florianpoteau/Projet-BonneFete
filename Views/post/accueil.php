@@ -1,5 +1,6 @@
 <?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\head.php' ?>
 
+
 <title>Accueil</title>
 </head>
 
@@ -16,15 +17,14 @@
 
 
 
-                        <form action="../profil/login" method="post">
-
+                        <form action="../profil/accueil" method="post">
 
 
                             <br>
 
                             <div class="form-group">
-                                <label for="i">Entrez votre texte</label>
-                                <input type="text" class="form-control" id="i" name="i" required>
+                                <label for="description_post">Entrez votre texte</label>
+                                <input type="text" class="form-control" id="description_post" name="description_post" required>
                             </div>
 
                             <br>
@@ -42,6 +42,18 @@
             </div>
         </div>
     </div>
+
+    <?php foreach ($profils as $profil) { ?>
+
+        <div class="card text-center mx-auto mt-5" style="width: 18rem;">
+            <div class="card-body">
+                <p class="card-text"><?php echo $profil->getDescription() ?></p>
+            </div>
+        </div>
+
+    <?php } ?>
+
+
 
 </body>
 

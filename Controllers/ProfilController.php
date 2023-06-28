@@ -19,7 +19,7 @@ class ProfilController
     public function getIndex()
     {
         $profils = $this->profilModel->getAll();
-        require_once 'Views/post/inscription.php';
+        require_once 'Views/post/accueil';
     }
 
     public function postRegister()
@@ -43,5 +43,17 @@ class ProfilController
     {
         $user = $_POST;
         $this->profilModel->login($user);
+    }
+
+    public function getAccueil()
+    {
+        $profils = $this->profilModel->getAll();
+        require_once 'Views/post/accueil.php';
+    }
+
+    public function postAccueil()
+    {
+        $user = $_POST;
+        $this->profilModel->addPost($user);
     }
 }
