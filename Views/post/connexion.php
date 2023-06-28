@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <h2 class="card-title text-center">Connexion</h2>
 
-                        <form action="../post/login" method="post">
+                        <form action="../profil/login" method="post">
 
                             <div class="form-group">
                                 <label for="nom_profil">Nom d'utilisateur:</label>

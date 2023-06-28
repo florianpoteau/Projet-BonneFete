@@ -1,4 +1,8 @@
-<?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\head.php'; ?>
+<?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\head.php';
+
+
+?>
+
 
 <body class="bg-black">
 
@@ -41,7 +45,7 @@
             </form>
 
             <div class="text-center mt-3">
-              <a href="../post/index">Vous avez déjà un compte ?</a>
+              <a href="../profil/login">Vous avez déjà un compte ?</a>
             </div>
           </div>
         </div>

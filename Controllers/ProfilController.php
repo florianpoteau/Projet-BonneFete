@@ -21,4 +21,23 @@ class ProfilController
         $profils = $this->profilModel->getAll();
         require_once 'Views/post/inscription.php';
     }
+
+    public function postRegister()
+    {
+        $user = $_POST;
+        $this->profilModel->createUser($user);
+        header('Location: ../profil/index');
+    }
+
+    public function getLogin()
+    {
+        require_once 'Views/post/connexion.php';
+    }
+
+    public function postLogin()
+    {
+        $user = $_POST;
+        $this->profilModel->login($user);
+        header('Location: ../profil/login');
+    }
 }
