@@ -43,6 +43,5 @@ class ProfilController
     {
         $user = $_POST;
         $this->profilModel->login($user);
-        header('Location: ../profil/login');
     }
 }

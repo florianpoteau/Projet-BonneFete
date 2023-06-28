@@ -1,8 +1,11 @@
 <?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\head.php' ?>
 
+<title>Accueil</title>
+</head>
+
 <body>
 
-    <p>FONCTIOONNNENENNNE</p>
+    <?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\navbar.php' ?>
 
 </body>
 

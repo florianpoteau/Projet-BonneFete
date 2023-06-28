@@ -3,6 +3,9 @@
 
 ?>
 
+<title>Inscription</title>
+</head>
+
 
 <body class="bg-black">
 

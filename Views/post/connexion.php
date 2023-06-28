@@ -1,4 +1,7 @@
-<?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\head.php';
+<?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\head.php'; ?>
+<title>Connexion</title>
+</head>
+<?php
 if (isset($_SESSION['nom_profil'])) {
     $nom_profil = $_SESSION['nom_profil'];
     echo "Connecté en tant que : " . $nom_profil;
@@ -13,6 +16,8 @@ if (isset($_SESSION['nom_profil'])) {
                 <div class="card mt-5">
                     <div class="card-body">
                         <h2 class="card-title text-center">Connexion</h2>
+
+
 
                         <form action="../profil/login" method="post">
 
