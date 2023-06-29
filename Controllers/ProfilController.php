@@ -61,4 +61,12 @@ class ProfilController
     {
         require_once 'Views/post/profil.php';
     }
+
+    public function postChange()
+    {
+        $user = $_POST;
+        $this->profilModel->change($user);
+
+        header('Location: ../profil/accueil');
+    }
 }

@@ -71,18 +71,23 @@
                     </div>
                     <!-- Contenu de la modal -->
                     <div class="modal-body">
-                        <form>
+                        <form action="../profil/change" method="post">
                             <div class="form-group">
                                 <label for="description_post">Entrez votre texte</label>
                                 <input type="text" class="form-control" id="description_post" name="description_post" value="<?php echo $profil->description_post ?>" required>
-
+                                <input type="hidden" name="idpost" value="<?php echo $profil->idpost ?>">
                             </div>
-                        </form>
+
                     </div>
                     <!-- Pied de la modal -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <button type="button" class="btn btn-primary">Enregistrer</button>
+
+
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+
+                        </form>
+
                     </div>
                 </div>
             </div>

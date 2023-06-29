@@ -98,4 +98,13 @@ class ProfilModel
         ]);
         header('Location: ../profil/accueil');
     }
+
+    public function change($user)
+    {
+        $query = $this->connection->getPdo()->prepare('UPDATE post SET description_post = :description_post WHERE idpost = :idpost');
+        $query->execute([
+            "description_post" => $user['description_post'],
+            "idpost" => $user['idpost']
+        ]);
+    }
 }
