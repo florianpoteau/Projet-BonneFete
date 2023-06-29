@@ -56,4 +56,9 @@ class ProfilController
         $user = $_POST;
         $this->profilModel->addPost($user);
     }
+
+    public function getProfil()
+    {
+        require_once 'Views/post/profil.php';
+    }
 }
