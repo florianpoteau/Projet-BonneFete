@@ -1,6 +1,12 @@
 <?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\navbar.php'; ?>
 <?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\head.php'; ?>
-<?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\foot.php'; ?>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<title>Profil</title>
+</head>
+
 
 <body style="background-color: black;">
     <div class="container">
@@ -24,7 +30,7 @@
                             </div>
                         </div>
                         <div class="card-body down">
-                            <button type="button" class="btn btn-primary mt-3 mb-2" data-toggle="modal" data-target="#myModal<?php echo $_SESSION['mdp_profil'] ?>">
+                            <button type="button" class="btn btn-primary mt-3 mb-2" data-toggle="modal" data-target="#myModal<?php echo $_SESSION['id_profil'] ?>">
                                 Changer le mot de passe
                             </button>
                             <button type="button" class="btn btn-danger mt-3 mb-2">Déconnexion</button>
@@ -34,6 +40,42 @@
             </div>
         </div>
 
+        <!-- Modal -->
+        <div class="modal" id="myModal<?php echo $_SESSION['id_profil'] ?>">
+
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- En-tête de la modal -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modifier le post</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <!-- Contenu de la modal -->
+                    <div class="modal-body">
+                        <form action="../profil/change" method="post">
+                            <div class="form-group">
+                                <label for="mdp_profil">Entrez votre texte</label>
+                                <input type="text" class="form-control" id="mdp_profil" name="mdp_profil" value="<?php echo $_SESSION['mdp_profil'] ?>" required>
+                                <input type="hidden" name="idpost" value="<?php echo $_SESSION['id_profil'] ?>">
+                            </div>
+
+                    </div>
+                    <!-- Pied de la modal -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+
+
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Historique des posts des utilisateurs -->
         <div class="container-fluid">
             <div class="row flex-wrap">
                 <div class="col-sm-4">
@@ -72,3 +114,5 @@
             </div>
 
 </body>
+
+<?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\foot.php'; ?>
