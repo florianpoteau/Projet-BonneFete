@@ -14,12 +14,8 @@
                     <a class="nav-link" href="#">Historique</a>
                 </li>
             </ul>
-            <a href="../profil/login"><button type="button" class="btn btn-primary me-3">
-                    Connexion
-                </button></a>
-
-            <a href="../profil/index"><button type="button" class="btn btn-success me-4">
-                    Inscription
+            <a href="../profil/profil"><button type="button" class="btn btn-primary me-3">
+                    Profil
                 </button></a>
 
         </div>
