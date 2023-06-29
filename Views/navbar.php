@@ -4,7 +4,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item" style="margin-left: 25%; margin-right: 25%; ">
-                    <a class="nav-link active" aria-current="page" href="../profil/login">Accueil</a>
+                    <a class="nav-link active" aria-current="page" href="../profil/accueil">Accueil</a>
                 </li>
                 <li class="nav-item" style="margin-left: 25%; margin-right: 25%; ">
                     <a class="nav-link" href="#">Profil</a>
