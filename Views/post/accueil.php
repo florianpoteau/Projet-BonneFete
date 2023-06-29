@@ -1,5 +1,8 @@
 <?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\head.php' ?>
 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 <title>Accueil</title>
 </head>
@@ -47,9 +50,44 @@
 
         <div class="card text-center mx-auto mt-5" style="width: 18rem;">
             <div class="card-body">
-                <p class="card-text"><?php echo $profil->getDescription() ?></p>
+                <p class="card-text"><?php echo $profil->getNomProfil() ?>
+                </p>
+
+                <p class="card-text"><?php echo $profil->description_post ?></p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal<?php echo $profil->idpost ?>">
+                    Modifier
+                </button>
             </div>
         </div>
+        <!-- Modal -->
+        <div class="modal" id="myModal<?php echo $profil->idpost ?>">
+
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- En-tête de la modal -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modifier le post</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <!-- Contenu de la modal -->
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="description_post">Entrez votre texte</label>
+                                <input type="text" class="form-control" id="description_post" name="description_post" value="<?php echo $profil->description_post ?>" required>
+
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Pied de la modal -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button type="button" class="btn btn-primary">Enregistrer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     <?php } ?>
 

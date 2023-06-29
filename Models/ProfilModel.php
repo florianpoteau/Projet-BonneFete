@@ -21,9 +21,9 @@ class ProfilModel
 
     public function getAll()
     {
-        $query = $this->connection->getPdo()->prepare("SELECT description_post FROM post");
+        $query = $this->connection->getPdo()->prepare("SELECT post.idpost, nom_profil, description_post from profil inner join post on profil.id_profil = post.id_profil");
         $query->execute();
-        return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Post");
+        return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Profil");
     }
 
     public function createUser($user)
@@ -78,6 +78,7 @@ class ProfilModel
             ]);
             $userCo = $query->fetch(PDO::FETCH_ASSOC);
             $_SESSION['nom_profil'] = $nom;
+            $_SESSION['id_profil'] = $userCo['id_profil'];
             header('Location: ../profil/accueil');
             // require 'C:\xampp\htdocs\Projet-BonneFete\Views\post\accueil.php';
         } else {
@@ -88,10 +89,11 @@ class ProfilModel
 
     public function addPost($user)
     {
-
+        $id_profil = $_SESSION['id_profil'];
         $description = $user['description_post'];
-        $query = $this->connection->getPdo()->prepare('INSERT INTO post (description_post) VALUES(:description_post)');
+        $query = $this->connection->getPdo()->prepare('INSERT INTO post (id_profil, description_post) VALUES(:id_profil, :description_post)');
         $query->execute([
+            "id_profil" => $id_profil,
             "description_post" => $description
         ]);
         header('Location: ../profil/accueil');

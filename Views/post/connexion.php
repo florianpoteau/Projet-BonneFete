@@ -25,7 +25,8 @@ if (isset($_SESSION['nom_profil'])) {
 
                             <div class="form-group" style="display: none;">
                                 <label for="id_profil">ID de profil:</label>
-                                <input type="hidden" id="id_profil" name="id_profil" value="<?php echo $_SESSION['id_profil']; ?>">
+                                <input type="hidden" id="id_profil" name="id_profil" value="<?php echo isset($_SESSION['id_profil']) ? $_SESSION['id_profil'] : ''; ?>">
+
                             </div>
 
                             <div class="form-group">
