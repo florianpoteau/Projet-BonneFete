@@ -31,6 +31,41 @@
                 </div>
             </div>
         </div>
+        <div class="container-fluid">
+    <div class="row flex-wrap">
+        <div class="col-sm-4">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h5 class="card-title">Div 1</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h5 class="card-title">Div 2</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h5 class="card-title">Div 3</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h5 class="card-title">Div 4</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                </div>
+            </div>
+        </div>
+        
     </div>
 
 </body>
