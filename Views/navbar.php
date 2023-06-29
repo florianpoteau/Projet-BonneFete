@@ -7,10 +7,6 @@
                     <a class="nav-link active" aria-current="page" href="../profil/accueil">Accueil</a>
                 </li>
                 <li class="nav-item" style="margin-left: 25%; margin-right: 25%; ">
-                    <a class="nav-link" href="#">Profil</a>
-                </li>
-
-                <li class="nav-item" style="margin-left: 25%; margin-right: 25%; ">
                     <a class="nav-link" href="#">Historique</a>
                 </li>
             </ul>
