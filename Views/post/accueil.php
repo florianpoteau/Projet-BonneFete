@@ -18,8 +18,6 @@
                     <div class="card-body">
                         <h2 class="card-title text-center">Ajouter un post</h2>
 
-
-
                         <form action="../profil/accueil" method="post">
 
 
@@ -31,6 +29,7 @@
                             </div>
 
                             <br>
+
 
 
                             <div class="text-center">
@@ -54,17 +53,22 @@
                 </p>
 
                 <p class="card-text"><?php echo $profil->description_post ?></p>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal<?php echo $profil->idpost ?>">
-                    Modifier
-                </button>
 
-                <form action="../profil/delete" method="post">
+                <?php if ($_SESSION['id_role'] == 2) { ?>
 
-                    <input type="hidden" name="idpost" value="<?php echo $profil->idpost ?>">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal<?php echo $profil->idpost ?>">
+                        Modifier
+                    </button>
 
-                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                    <form action="../profil/delete" method="post">
 
-                </form>
+                        <input type="hidden" name="idpost" value="<?php echo $profil->idpost ?>">
+
+                        <button type="submit" class="btn btn-danger">Supprimer</button>
+
+                    </form>
+
+                <?php } ?>
 
             </div>
         </div>

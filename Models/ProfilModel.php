@@ -29,6 +29,8 @@ class ProfilModel
     public function createUser($user)
     {
 
+
+
         $existingUser = $this->getUserByUsername($user['nom_profil']);
 
         if ($existingUser) {
@@ -72,13 +74,17 @@ class ProfilModel
 
         if ($result && password_verify($password, $result['mdp_profil'])) {
             // Les informations d'identification sont valides, connectez l'utilisateur
-            $query = $this->connection->getPdo()->prepare('SELECT id_profil, nom_profil FROM profil WHERE nom_profil = :nom_profil');
+            $query = $this->connection->getPdo()->prepare('SELECT id_profil, nom_profil, id_role, email_profil FROM profil WHERE nom_profil = :nom_profil');
             $query->execute([
                 "nom_profil" => $nom
             ]);
             $userCo = $query->fetch(PDO::FETCH_ASSOC);
+
             $_SESSION['nom_profil'] = $nom;
             $_SESSION['id_profil'] = $userCo['id_profil'];
+            $_SESSION['id_role'] = $userCo['id_role'];
+            $_SESSION['email_profil'] = $userCo['email_profil'];
+            $_SESSION['mdp_profil'] = $password;
             header('Location: ../profil/accueil');
             // require 'C:\xampp\htdocs\Projet-BonneFete\Views\post\accueil.php';
         } else {

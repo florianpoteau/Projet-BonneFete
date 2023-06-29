@@ -6,9 +6,12 @@
                 <li class="nav-item" style="margin-left: 25%; margin-right: 25%; ">
                     <a class="nav-link active" aria-current="page" href="../profil/accueil">Accueil</a>
                 </li>
-                <li class="nav-item" style="margin-left: 25%; margin-right: 25%; ">
-                    <a class="nav-link" href="#">Historique</a>
-                </li>
+
+                <?php if ($_SESSION['id_role'] == 2) { ?>
+                    <li class="nav-item" style="margin-left: 25%; margin-right: 25%; ">
+                        <a class="nav-link" href="#">Historique</a>
+                    </li>
+                <?php } ?>
             </ul>
             <a href="../profil/profil"><button type="button" class="btn btn-primary me-3">
                     Profil
