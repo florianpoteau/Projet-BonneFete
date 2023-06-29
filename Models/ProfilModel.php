@@ -107,4 +107,19 @@ class ProfilModel
             "idpost" => $user['idpost']
         ]);
     }
+
+    public function delete($post)
+    {
+        $idpost = $post['idpost'];
+
+        $queryProfile = $this->connection->getPdo()->prepare('DELETE FROM profil WHERE idpost = :idpost');
+        $queryProfile->execute([
+            "idpost" => $idpost
+        ]);
+
+        $queryPost = $this->connection->getPdo()->prepare('DELETE FROM post WHERE idpost = :idpost');
+        $queryPost->execute([
+            "idpost" => $idpost
+        ]);
+    }
 }

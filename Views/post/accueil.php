@@ -57,6 +57,15 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal<?php echo $profil->idpost ?>">
                     Modifier
                 </button>
+
+                <form action="../profil/delete" method="post">
+
+                    <input type="hidden" name="idpost" value="<?php echo $profil->idpost ?>">
+
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+
+                </form>
+
             </div>
         </div>
         <!-- Modal -->

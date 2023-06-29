@@ -26,7 +26,7 @@ class ProfilController
     {
         $user = $_POST;
         $this->profilModel->createUser($user);
-        header('Location: ../profil/index');
+        header('Location: ../profil/login');
     }
 
 
@@ -66,6 +66,15 @@ class ProfilController
     {
         $user = $_POST;
         $this->profilModel->change($user);
+
+        header('Location: ../profil/accueil');
+    }
+
+    public function postDelete()
+    {
+
+        $post = $_POST;
+        $this->profilModel->delete($post);
 
         header('Location: ../profil/accueil');
     }

@@ -2,8 +2,6 @@
 <title>Connexion</title>
 </head>
 <?php
-
-
 if (isset($_SESSION['nom_profil'])) {
     $nom_profil = $_SESSION['nom_profil'];
     echo "Connecté en tant que : " . $nom_profil;
