@@ -17,7 +17,6 @@
             <a href="../profil/profil"><button type="button" class="btn btn-primary me-3">
                     Profil
                 </button></a>
-
         </div>
     </div>
 </nav>
