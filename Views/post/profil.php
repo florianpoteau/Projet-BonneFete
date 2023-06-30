@@ -10,6 +10,8 @@
 
 <body style="background-color: black;">
 
+
+
     <h2 class="text-center text-white mt-5">Mon profil</h2>
 
     <div class="container">
@@ -122,7 +124,7 @@
         </div>
 
 
-        <!-- Historique des posts des utilisateurs -->
+        <!-- Historique des posts de l'utilisateur -->
 
         <?php foreach ($postUsers as $profil) { ?>
 

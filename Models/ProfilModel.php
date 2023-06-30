@@ -40,7 +40,7 @@ class ProfilModel
             $hashedPassword = password_hash($user['mdp_profil'], PASSWORD_DEFAULT);
 
             try {
-                $query = $this->connection->getPdo()->prepare('INSERT INTO profil (email_profil, mdp_profil, nom_profil, id_role) VALUES (:email_profil, :mdp_profil, :nom_profil, 2)');
+                $query = $this->connection->getPdo()->prepare('INSERT INTO profil (email_profil, mdp_profil, nom_profil, id_role) VALUES (:email_profil, :mdp_profil, :nom_profil, 1)');
                 $query->execute([
                     'email_profil' => $user['email_profil'],
                     'nom_profil' => $user['nom_profil'],
@@ -169,4 +169,26 @@ class ProfilModel
             "id_profil" => $id_profil
         ]);
     }
+
+    public function getPostsById($id_profil)
+    {
+        $query = $this->connection->getPdo()->prepare("SELECT post.idpost, post.description_post, post.date_post, profil.id_profil, profil.email_profil, profil.mdp_profil, profil.nom_profil, profil.id_role
+    FROM post
+    INNER JOIN profil ON post.id_profil = profil.id_profil
+    WHERE profil.id_profil = :id_profil");
+        $query->bindValue(':id_profil', $id_profil, PDO::PARAM_INT);
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // public function getPostById()
+    // {
+    //     $query = $this->connection->getPdo()->prepare("SELECT post.idpost, post.description_post, post.date_post, profil.id_profil, profil.email_profil, profil.mdp_profil, profil.nom_profil, profil.id_role
+    //     FROM post
+    //     INNER JOIN profil ON post.id_profil = profil.id_profil
+    //     WHERE profil.id_profil = :id_profil");
+    //     $query->bindParam(':id_profil', $idProfil, PDO::PARAM_INT);
+    //     $query->execute();
+    //     return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Profil");
+    // }
 }

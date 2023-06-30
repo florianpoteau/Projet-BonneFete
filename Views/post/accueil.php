@@ -47,6 +47,8 @@
         </div>
     </div>
 
+    <!-- Card bootstrap pour la liste des posts -->
+
     <div class="d-flex flex-wrap">
         <?php foreach ($profils as $profil) { ?>
 
@@ -76,18 +78,28 @@
 
                             <button type="submit" class="btn btn-danger">Supprimer</button>
 
+                            <!-- Bouton "Voir profil" -->
+                            <a href="lien_vers_profil.php?id=<?php echo $profil->getId() ?>" class="btn btn-secondary" data-toggle="modal" data-target="#profileModal<?php echo $profil->getId() ?>">Voir profil</a>
+
 
                         </form>
 
                         <p class="card-text text-right"><?php echo "Posté le " . $profil->date_post ?></p>
 
                     <?php } ?>
+
+
+
+
+
+
+
                 </div>
             </div>
     </div>
 
 
-    <!-- Modal -->
+    <!-- Modal du bouton modifier -->
     <div class="modal" id="myModal<?php echo $profil->idpost ?>">
 
         <div class="modal-dialog">
@@ -119,6 +131,39 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Modal du bouton voir profil -->
+    <div class="modal fade" id="profileModal<?php echo $profil->getId() ?>" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel<?php echo $profil->getId() ?>" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileModalLabel<?php echo $profil->getId() ?>">Profil de <?php echo $profil->getNomProfil() ?></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenu du modal avec les détails du profil -->
+                    <p>Nom : <?php echo $profil->getNomProfil() ?></p>
+                    <p>Email : <?php echo $profil->getEmail() ?></p>
+
+                    <h4>Posts de l'utilisateur</h4>
+
+
+
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
     </div>
 
 

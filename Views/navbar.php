@@ -9,7 +9,7 @@
 
                 <?php if ($_SESSION['id_role'] == 2) { ?>
                     <li class="nav-item" style="margin-left: 25%; margin-right: 25%; ">
-                        <a class="nav-link" href="#">Historique</a>
+                        <a class="nav-link" aria-current="page" href="../profil/historique">Historique</a>
                     </li>
                 <?php } ?>
             </ul>
