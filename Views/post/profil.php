@@ -45,7 +45,17 @@
 
         <br>
 
-        <h2 class="text-center text-white">Mes Posts</h2>
+        <?php if (!empty($postUsers)) { ?>
+            <h2 class="text-center text-white">Mes Posts</h2>
+
+        <?php } ?>
+
+        <?php if (empty($postUsers)) { ?>
+            <div class="container text-center mt-5">
+                <p class="text-center text-white mt-0">Ohhh non... Vous n'avez pas encore de post.</p>
+                <p class="text-center text-white">Vous pourrez voir vos posts ici si vous avez des posts alors à vos claviers !!</p>
+            </div>
+        <?php } ?>
 
         <!-- Modal -->
         <div class="modal" id="myModal<?php echo $_SESSION['id_profil'] ?>">
@@ -88,9 +98,9 @@
 
 
 
-            <div class="container-fluid">
-                <div class="row flex-wrap">
-                    <div class="col-sm-4">
+            <div class="container-fluid text-center">
+                <div class="row flex-wrap justify-content-center">
+                    <div class="col-sm-8">
                         <div class="card mt-5">
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $postUser->getNomProfil() ?></h5>
@@ -101,7 +111,8 @@
 
 
                 </div>
-            <?php } ?>
+            </div>
+        <?php } ?>
 </body>
 
 <?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\foot.php'; ?>

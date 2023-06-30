@@ -21,7 +21,7 @@ class ProfilModel
 
     public function getAll()
     {
-        $query = $this->connection->getPdo()->prepare("SELECT post.idpost, nom_profil, description_post from profil inner join post on profil.id_profil = post.id_profil order by post.idpost DESC");
+        $query = $this->connection->getPdo()->prepare("SELECT post.idpost, nom_profil, description_post, date_post, profil.id_profil from profil inner join post on profil.id_profil = post.id_profil order by post.idpost DESC");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Profil");
     }
@@ -40,7 +40,7 @@ class ProfilModel
             $hashedPassword = password_hash($user['mdp_profil'], PASSWORD_DEFAULT);
 
             try {
-                $query = $this->connection->getPdo()->prepare('INSERT INTO profil (email_profil, mdp_profil, nom_profil, id_role) VALUES (:email_profil, :mdp_profil, :nom_profil, 1)');
+                $query = $this->connection->getPdo()->prepare('INSERT INTO profil (email_profil, mdp_profil, nom_profil, id_role) VALUES (:email_profil, :mdp_profil, :nom_profil, 2)');
                 $query->execute([
                     'email_profil' => $user['email_profil'],
                     'nom_profil' => $user['nom_profil'],
@@ -97,10 +97,12 @@ class ProfilModel
     {
         $id_profil = $_SESSION['id_profil'];
         $description = $user['description_post'];
-        $query = $this->connection->getPdo()->prepare('INSERT INTO post (id_profil, description_post) VALUES(:id_profil, :description_post)');
+        $date_post = date('Y-m-d H:i:s');
+        $query = $this->connection->getPdo()->prepare('INSERT INTO post (id_profil, description_post, date_post) VALUES(:id_profil, :description_post, :date_post)');
         $query->execute([
             "id_profil" => $id_profil,
-            "description_post" => $description
+            "description_post" => $description,
+            "date_post" => $date_post
         ]);
         header('Location: ../profil/accueil');
     }

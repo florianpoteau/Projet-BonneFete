@@ -12,6 +12,7 @@
     <?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\navbar.php' ?>
 
     <div class="container">
+
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card mt-5">
@@ -25,7 +26,8 @@
 
                             <div class="form-group">
                                 <label for="description_post">Entrez votre texte</label>
-                                <input type="text" class="form-control" id="description_post" name="description_post" required>
+                                <input type="text" class="form-control" id="description_post" name="description_post" maxlength="200" required>
+
                             </div>
 
                             <br>
@@ -45,69 +47,82 @@
         </div>
     </div>
 
-    <?php foreach ($profils as $profil) { ?>
+    <div class="d-flex flex-wrap">
+        <?php foreach ($profils as $profil) { ?>
 
-        <div class="card text-center mx-auto mt-5" style="width: 18rem;">
-            <div class="card-body">
-                <p class="card-text"><?php echo $profil->getNomProfil() ?>
-                </p>
+            <div class="card text-center mx-auto mt-5" style="width: 50rem;">
+                <div class="card-body">
 
-                <p class="card-text"><?php echo $profil->description_post ?></p>
+                    <?php if ($profil->getId() == $_SESSION['id_profil']) { ?>
+                        <p class="card-text">Vous avez posté :</p>
+                    <?php } else { ?>
 
-                <?php if ($_SESSION['id_role'] == 2) { ?>
+                        <p class="card-text"><?php echo $profil->getNomProfil()  ?> a posté:
+                        </p>
 
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal<?php echo $profil->idpost ?>">
-                        Modifier
-                    </button>
+                    <?php } ?>
 
-                    <form action="../profil/delete" method="post">
+                    <p class="card-text"><?php echo $profil->description_post ?></p>
 
-                        <input type="hidden" name="idpost" value="<?php echo $profil->idpost ?>">
+                    <?php if ($_SESSION['id_role'] == 2) { ?>
 
-                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal<?php echo $profil->idpost ?>">
+                            Modifier
+                        </button>
 
-                    </form>
+                        <form action="../profil/delete" method="post" class="d-inline-block">
 
-                <?php } ?>
+                            <input type="hidden" name="idpost" value="<?php echo $profil->idpost ?>">
 
-            </div>
-        </div>
-        <!-- Modal -->
-        <div class="modal" id="myModal<?php echo $profil->idpost ?>">
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
 
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <!-- En-tête de la modal -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Modifier le post</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <!-- Contenu de la modal -->
-                    <div class="modal-body">
-                        <form action="../profil/change" method="post">
-                            <div class="form-group">
-                                <label for="description_post">Entrez votre texte</label>
-                                <input type="text" class="form-control" id="description_post" name="description_post" value="<?php echo $profil->description_post ?>" required>
-                                <input type="hidden" name="idpost" value="<?php echo $profil->idpost ?>">
-                            </div>
-
-                    </div>
-                    <!-- Pied de la modal -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-
-
-                        <button type="submit" class="btn btn-primary">Enregistrer</button>
 
                         </form>
 
-                    </div>
+                        <p class="card-text text-right"><?php echo "Posté le " . $profil->date_post ?></p>
+
+                    <?php } ?>
+                </div>
+            </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal" id="myModal<?php echo $profil->idpost ?>">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- En-tête de la modal -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Modifier le post</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Contenu de la modal -->
+                <div class="modal-body">
+                    <form action="../profil/change" method="post">
+                        <div class="form-group">
+                            <label for="description_post">Entrez votre texte</label>
+                            <input type="text" class="form-control" id="description_post" name="description_post" value="<?php echo $profil->description_post ?>" required>
+                            <input type="hidden" name="idpost" value="<?php echo $profil->idpost ?>">
+                        </div>
+
+                </div>
+                <!-- Pied de la modal -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+
+
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+
+                    </form>
+
                 </div>
             </div>
         </div>
+    </div>
 
 
-    <?php } ?>
+<?php } ?>
 
 
 
