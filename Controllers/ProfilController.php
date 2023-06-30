@@ -59,6 +59,7 @@ class ProfilController
 
     public function getProfil()
     {
+        $postUsers = $this->profilModel->allPostByProfil();
         require_once 'Views/post/profil.php';
     }
 
@@ -77,5 +78,12 @@ class ProfilController
         $this->profilModel->delete($post);
 
         header('Location: ../profil/accueil');
+    }
+
+    public function postChangePassword()
+    {
+        $user = $_POST;
+        $this->profilModel->changePassword($user);
+        header('Location: ../profil/profil');
     }
 }

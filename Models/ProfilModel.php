@@ -21,7 +21,7 @@ class ProfilModel
 
     public function getAll()
     {
-        $query = $this->connection->getPdo()->prepare("SELECT post.idpost, nom_profil, description_post from profil inner join post on profil.id_profil = post.id_profil");
+        $query = $this->connection->getPdo()->prepare("SELECT post.idpost, nom_profil, description_post from profil inner join post on profil.id_profil = post.id_profil order by post.idpost DESC");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Profil");
     }
@@ -127,5 +127,33 @@ class ProfilModel
         $queryPost->execute([
             "idpost" => $idpost
         ]);
+    }
+
+    public function changePassword($user)
+    {
+        $hashedPassword = password_hash($user['mdp_profil'], PASSWORD_DEFAULT);
+
+        try {
+            $query = $this->connection->getPdo()->prepare('UPDATE profil set mdp_profil = :mdp_profil WHERE id_profil = :id_profil ');
+            $query->execute([
+                'id_profil' => $user['id_profil'],
+                'mdp_profil' => $hashedPassword
+            ]);
+            return "Bien enregistré";
+        } catch (\PDOException $e) {
+            return "une erreur est survenue";
+        }
+    }
+
+    public function allPostByProfil()
+    {
+        $id_profil = $_SESSION['id_profil'];
+
+        $query = $this->connection->getPdo()->prepare('SELECT post.idpost, post.description_post FROM post INNER JOIN profil ON post.id_profil = profil.id_profil WHERE profil.id_profil = :id_profil');
+        $query->execute([
+            'id_profil' => $id_profil
+        ]);
+
+        return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Profil");
     }
 }
