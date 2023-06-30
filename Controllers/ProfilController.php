@@ -86,4 +86,11 @@ class ProfilController
         $this->profilModel->changePassword($user);
         header('Location: ../profil/profil');
     }
+
+    public function postDeleteProfil()
+    {
+        $user = $_POST;
+        $this->profilModel->deleteProfilById($user);
+        header('Location: ../profil/index');
+    }
 }

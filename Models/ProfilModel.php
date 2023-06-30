@@ -158,4 +158,15 @@ class ProfilModel
 
         return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Profil");
     }
+
+    public function deleteProfilById($user)
+    {
+
+        $id_profil =  $_SESSION['id_profil'];
+
+        $queryProfile = $this->connection->getPdo()->prepare('DELETE FROM profil WHERE id_profil = :id_profil');
+        $queryProfile->execute([
+            "id_profil" => $id_profil
+        ]);
+    }
 }

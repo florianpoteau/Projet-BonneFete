@@ -37,7 +37,36 @@
                                 Changer le mot de passe
                             </button>
                             <a href="../profil/login"><button type="button" class="btn btn-danger mt-5 mb-2">Déconnexion</button></a>
-                            <a href="../profil/index"><button type="submit" class="btn btn-danger mt-5 mb-2">Supprimer le compte</button></a>
+                            <form action="../profil/deleteProfil"></form>
+                            <button type="button" class="btn btn-danger mt-5 mb-2" data-toggle="modal" data-target="#confirmModal">Supprimer le compte</button>
+
+
+
+                            <!-- Modal pour supprimer le compte -->
+                            <div class="modal" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="confirmModalLabel">Confirmation de suppression</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Êtes-vous sûr de vouloir supprimer votre compte ?</p>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                            <form action="../profil/DeleteProfil" method="post">
+                                                <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#confirmModal">Supprimer</button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -58,7 +87,7 @@
             </div>
         <?php } ?>
 
-        <!-- Modal -->
+        <!-- Modal pour modifier le mot de passe -->
         <div class="modal" id="myModal<?php echo $_SESSION['id_profil'] ?>">
 
             <div class="modal-dialog">
