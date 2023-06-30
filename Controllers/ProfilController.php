@@ -68,7 +68,14 @@ class ProfilController
         $user = $_POST;
         $this->profilModel->change($user);
 
-        header('Location: ../profil/accueil');
+        // Condition pour vérifier la page actuelle et choisir le header en conséquence
+        $referer = strtolower($_SERVER['HTTP_REFERER']);
+        $accueilURL = strtolower('http://localhost/Projet-BonneFete/profil/accueil');
+        if ($referer == $accueilURL) {
+            header('Location: ../profil/accueil');
+        } else {
+            header('Location: ../profil/profil');
+        }
     }
 
     public function postDelete()

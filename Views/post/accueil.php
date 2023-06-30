@@ -64,7 +64,7 @@
 
                     <p class="card-text"><?php echo $profil->description_post ?></p>
 
-                    <?php if ($_SESSION['id_role'] == 2) { ?>
+                    <?php if ($_SESSION['id_role'] == 2 || $_SESSION['id_profil'] == $profil->getId()) { ?>
 
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal<?php echo $profil->idpost ?>">
                             Modifier
