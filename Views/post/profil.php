@@ -33,10 +33,11 @@
                             </div>
                         </div>
                         <div class="card-body down">
-                            <button type="button" class="btn btn-primary mt-3 mb-2" data-toggle="modal" data-target="#myModal<?php echo $_SESSION['id_profil'] ?>">
+                            <button type="button" class="btn btn-primary mt-5 mb-2" data-toggle="modal" data-target="#myModal<?php echo $_SESSION['id_profil'] ?>">
                                 Changer le mot de passe
                             </button>
-                            <a href="../profil/login"><button type="button" class="btn btn-danger mt-3 mb-2">Déconnexion</button></a>
+                            <a href="../profil/login"><button type="button" class="btn btn-danger mt-5 mb-2">Déconnexion</button></a>
+                            <a href="../profil/index"><button type="submit" class="btn btn-danger mt-5 mb-2">Supprimer le compte</button></a>
                         </div>
                     </div>
                 </div>
