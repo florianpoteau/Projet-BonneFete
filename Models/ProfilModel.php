@@ -21,7 +21,7 @@ class ProfilModel
 
     public function getAll()
     {
-        $query = $this->connection->getPdo()->prepare("SELECT post.idpost, nom_profil, description_post, date_post, profil.id_profil from profil inner join post on profil.id_profil = post.id_profil order by post.idpost DESC");
+        $query = $this->connection->getPdo()->prepare("SELECT post.idpost, nom_profil, description_post, date_post, profil.id_profil, email_profil from profil inner join post on profil.id_profil = post.id_profil order by post.idpost DESC");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Profil");
     }
@@ -180,15 +180,4 @@ class ProfilModel
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
-
-    // public function getPostById()
-    // {
-    //     $query = $this->connection->getPdo()->prepare("SELECT post.idpost, post.description_post, post.date_post, profil.id_profil, profil.email_profil, profil.mdp_profil, profil.nom_profil, profil.id_role
-    //     FROM post
-    //     INNER JOIN profil ON post.id_profil = profil.id_profil
-    //     WHERE profil.id_profil = :id_profil");
-    //     $query->bindParam(':id_profil', $idProfil, PDO::PARAM_INT);
-    //     $query->execute();
-    //     return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Profil");
-    // }
 }

@@ -74,19 +74,20 @@
 
                         <form action="../profil/delete" method="post" class="d-inline-block">
 
-                            <input type="hidden" name="idpost" value="<?php echo $profil->idpost ?>">
-
                             <button type="submit" class="btn btn-danger">Supprimer</button>
 
-                            <!-- Bouton "Voir profil" -->
-                            <a href="lien_vers_profil.php?id=<?php echo $profil->getId() ?>" class="btn btn-secondary" data-toggle="modal" data-target="#profileModal<?php echo $profil->getId() ?>">Voir profil</a>
+                        <?php } ?>
+
+                        <!-- Bouton "Voir profil" -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#profileModal<?php echo $profil->getId() ?>" data-id="<?php echo $profil->getId() ?>">
+                            Voir profil
+                        </button>
+
 
 
                         </form>
 
                         <p class="card-text text-right"><?php echo "Posté le " . $profil->date_post ?></p>
-
-                    <?php } ?>
 
 
 
@@ -147,10 +148,6 @@
                     <!-- Contenu du modal avec les détails du profil -->
                     <p>Nom : <?php echo $profil->getNomProfil() ?></p>
                     <p>Email : <?php echo $profil->getEmail() ?></p>
-
-                    <h4>Posts de l'utilisateur</h4>
-
-
 
 
 

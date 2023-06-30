@@ -48,6 +48,7 @@ class ProfilController
     public function getAccueil()
     {
         $profils = $this->profilModel->getAll();
+
         require_once 'Views/post/accueil.php';
     }
 
