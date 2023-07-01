@@ -5,6 +5,7 @@ namespace App\Models;
 require_once 'Database.php';
 require_once 'Models/Profil.php';
 require_once 'Models/Post.php';
+require_once 'Models/Commentaire.php';
 
 use App\Database;
 
@@ -21,7 +22,7 @@ class ProfilModel
 
     public function getAll()
     {
-        $query = $this->connection->getPdo()->prepare("SELECT post.idpost, nom_profil, description_post, date_post, profil.id_profil, email_profil from profil inner join post on profil.id_profil = post.id_profil order by post.idpost DESC");
+        $query = $this->connection->getPdo()->prepare("SELECT post.idpost, nom_profil, description_post, date_post, profil.id_profil, email_profil from profil inner join post on profil.id_profil = post.id_profil  order by post.idpost DESC");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Profil");
     }
@@ -53,9 +54,18 @@ class ProfilModel
         }
     }
 
-    private function getUserByUsername($username)
+    public function getEmail($email)
     {
-        $query = $this->connection->getPdo()->prepare('SELECT * FROM profil WHERE nom_profil = :nom_profil');
+
+        $query = $this->connection->getPdo()->prepare('SELECT email_profil FROM profil WHERE email_profil = :email');
+        $query->execute(['email' => $email]);
+
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getUserByUsername($username)
+    {
+        $query = $this->connection->getPdo()->prepare('SELECT nom_profil FROM profil WHERE nom_profil = :nom_profil');
         $query->execute(['nom_profil' => $username]);
 
         return $query->fetch(PDO::FETCH_ASSOC);
@@ -179,5 +189,26 @@ class ProfilModel
         $query->bindValue(':id_profil', $id_profil, PDO::PARAM_INT);
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function addComments($user, $idpost)
+    {
+        $id_profil = $_SESSION['id_profil'];
+        $commentaire = $user['commentaire'];
+        $date_commentaire = date('Y-m-d H:i:s');
+        $query = $this->connection->getPdo()->prepare('INSERT INTO commentaire (id_profil, idpost, commentaire, date_commentaire) VALUES(:id_profil, :idpost, :commentaire, :date_commentaire)');
+        $query->execute([
+            "id_profil" => $id_profil,
+            'idpost' => $idpost,
+            "commentaire" => $commentaire,
+            "date_commentaire" => $date_commentaire
+        ]);
+    }
+
+    public function getCommentaires()
+    {
+        $query = $this->connection->getPdo()->prepare('SELECT commentaire, date_commentaire, commentaire.idpost, profil.nom_profil, date_commentaire from commentaire inner join post on post.idpost= commentaire.idpost INNER JOIN profil ON profil.id_profil = commentaire.id_profil');
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Commentaire");
     }
 }

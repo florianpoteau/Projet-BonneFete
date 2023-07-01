@@ -25,8 +25,33 @@ class ProfilController
     public function postRegister()
     {
         $user = $_POST;
-        $this->profilModel->createUser($user);
-        header('Location: ../profil/login');
+        $email = $user['email_profil'];
+        $existingUser = $this->profilModel->getUserByUsername($user['nom_profil']);
+        $existingEmail = $this->profilModel->getEmail($user['email_profil']);
+
+        if (!$this->emailExists($email)) {
+            echo "L'adresse e-mail n'existe pas";
+            return;
+        } elseif ($existingUser) {
+            echo "Nom d'utilisateur déjà utilisé";
+            return;
+        } elseif ($existingEmail) {
+            echo 'Adresse email déja utilisé';
+            return;
+        } else {
+            $this->profilModel->createUser($user);
+            header('Location: ../profil/login');
+        }
+    }
+
+    // Fonction permettant de savoir si l'email existe déja ou pas
+    private function emailExists($email)
+    {
+        // Obtenez le domaine de l'adresse e-mail
+        $domain = explode('@', $email)[1];
+
+        // Vérifiez si le domaine a un enregistrement MX
+        return checkdnsrr($domain, 'MX');
     }
 
 
@@ -48,6 +73,7 @@ class ProfilController
     public function getAccueil()
     {
         $profils = $this->profilModel->getAll();
+        $commentaires = $this->profilModel->getCommentaires();
 
         require_once 'Views/post/accueil.php';
     }
@@ -100,5 +126,13 @@ class ProfilController
         $user = $_POST;
         $this->profilModel->deleteProfilById($user);
         header('Location: ../profil/index');
+    }
+
+    public function postCommentaire()
+    {
+        $user = $_POST;
+        $idpost = $user['idpost'];
+        $this->profilModel->addComments($user, $idpost);
+        header('Location: ../profil/accueil');
     }
 }

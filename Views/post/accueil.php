@@ -66,7 +66,7 @@
 
                     <p class="card-text"><?php echo $profil->description_post ?></p>
 
-                    <?php if ($_SESSION['id_role'] == 2 || $_SESSION['id_profil'] == $profil->getId()) { ?>
+                    <?php if ($_SESSION['id_role'] == 2 || $_SESSION['id_role'] == 3 || $_SESSION['id_profil'] == $profil->getId()) { ?>
 
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal<?php echo $profil->idpost ?>">
                             Modifier
@@ -78,16 +78,63 @@
 
                         <?php } ?>
 
+
+
+                        </form>
+
                         <!-- Bouton "Voir profil" -->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#profileModal<?php echo $profil->getId() ?>" data-id="<?php echo $profil->getId() ?>">
                             Voir profil
                         </button>
 
+                        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#commentCollapse<?php echo $profil->idpost ?>">
+                            Commenter
+                        </button>
 
+                        <br>
+                        <br>
 
-                        </form>
 
                         <p class="card-text text-right"><?php echo "Posté le " . $profil->date_post ?></p>
+
+                        <p>
+                            <?php foreach ($commentaires as $comment) {
+                                if ($comment->getIdPost() == $profil->idpost) { ?>
+                                    <hr>
+                                    <?php
+                                    echo $comment->nom_profil . " a répondu"; ?>
+                                    <br>
+                                    <br>
+                                    <?php
+                                    echo $comment->getCommentaire();
+                                    ?>
+                                    <br>
+                                <?php
+                                    echo "Posté le " . $comment->getDateCommentaire();
+                                } ?>
+
+                            <?php } ?>
+                            <hr>
+                        </p>
+
+
+                        <!-- Contenu pour l'extension de la card lors du clic sur le bouton commenter -->
+                        <div id="commentCollapse<?php echo $profil->idpost ?>" class="collapse">
+                            <!-- Contenu du commentaire -->
+                            <form action="../profil/commentaire" method="post">
+                                <input type="hidden" name="idpost" value="<?php echo $profil->idpost ?>">
+                                <div class="form-group">
+                                    <label for="commentaire">Votre commentaire</label>
+                                    <br>
+                                    <input type="text" class="form-control" id="commentaire" name="commentaire" required>
+                                    <br>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Ajouter le commentaire</button>
+                            </form>
+                        </div>
+
+
+
 
 
 

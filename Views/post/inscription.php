@@ -34,7 +34,7 @@
 
               <div class="form-group">
                 <label for="mdp_profil">Mot de passe:</label>
-                <input type="password" class="form-control" id="mdp_profil" name="mdp_profil" required>
+                <input type="password" class="form-control" id="mdp_profil" name="mdp_profil" minlength="8" required>
               </div>
 
               <br>
