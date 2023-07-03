@@ -144,7 +144,7 @@
 
                             <br>
 
-                            <form action="../profil/delete" method="post" class="d-inline-block">
+                            <form action="../profil/deletePost" method="post" class="d-inline-block">
 
                                 <input type="hidden" name="idpost" value="<?php echo $profil->idpost ?>">
 

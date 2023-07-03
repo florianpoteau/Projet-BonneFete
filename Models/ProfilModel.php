@@ -130,10 +130,7 @@ class ProfilModel
     {
         $idpost = $post['idpost'];
 
-        $queryProfile = $this->connection->getPdo()->prepare('DELETE FROM profil WHERE idpost = :idpost');
-        $queryProfile->execute([
-            "idpost" => $idpost
-        ]);
+
 
         $queryPost = $this->connection->getPdo()->prepare('DELETE FROM post WHERE idpost = :idpost');
         $queryPost->execute([
@@ -229,11 +226,18 @@ class ProfilModel
         ]);
     }
 
+    public function getAllUsers()
+    {
+        $query = $this->connection->getPdo()->prepare("SELECT nom_profil, description_post, date_post, email_profil from profil inner join post on profil.id_profil = post.id_profil  order by post.idpost DESC");
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Profil");
+    }
+
     public function getAllProfil()
     {
         $query = $this->connection->getPdo()->prepare("SELECT profil.nom_profil, profil.id_profil, profil.email_profil, role.libelle_role, profil.id_role
         FROM profil
-        INNER JOIN post ON profil.id_profil = post.id_profil
+        INNER JOIN post
         inner join role on role.id_role = profil.id_role
         GROUP BY profil.nom_profil, profil.id_profil");
         $query->execute();
@@ -258,5 +262,46 @@ class ProfilModel
         $query->execute([
             'id_profil' => $id_profil
         ]);
+    }
+
+    // Like
+
+    public function addlike($like)
+    {
+        $idpost = $like['idpost'];
+        $id_profil = $like['id_profil'];
+
+        // Vérifier si l'utilisateur a déjà effectué un like sur ce post
+        if (!$this->hasLikedPost($like)) {
+            $query = $this->connection->getPdo()->prepare('INSERT INTO `like` (id_profil, idpost) VALUES(:id_profil, :idpost)');
+            $query->execute([
+                "id_profil" => $id_profil,
+                'idpost' => $idpost,
+            ]);
+        }
+    }
+
+
+    public function LikeByPost($like)
+    {
+        $idpost = $like['idpost'];
+        $query = $this->connection->getPdo()->prepare("SELECT COUNT(id_like) as like_count FROM `like` WHERE idpost = :idpost");
+        $query->execute([':idpost' => $idpost]);
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        return $result['like_count'];
+    }
+
+    public function hasLikedPost($like)
+    {
+        $idpost = $like['idpost'];
+        $id_profil = $like['id_profil'];
+
+        $query = $this->connection->getPdo()->prepare('SELECT COUNT(id_like) as like_count FROM `like` WHERE id_profil = :id_profil AND idpost = :idpost');
+        $query->execute([
+            "id_profil" => $id_profil,
+            'idpost' => $idpost,
+        ]);
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        return $result['like_count'] > 0;
     }
 }

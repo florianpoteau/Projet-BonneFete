@@ -72,9 +72,10 @@ class ProfilController
 
     public function getAccueil()
     {
+
+
         $profils = $this->profilModel->getAll();
         $commentaires = $this->profilModel->getCommentaires();
-
 
 
         require_once 'Views/post/accueil.php';
@@ -168,5 +169,29 @@ class ProfilController
         $role = $_POST;
         $this->profilModel->retrograderModo($role);
         header('Location: ../profil/historique');
+    }
+
+    public function postDeletePost()
+    {
+
+        $post = $_POST;
+        $this->profilModel->delete($post);
+
+        $commentaires = $this->profilModel->getCommentaires();
+
+        if (!empty($commentaires)) {
+            $this->profilModel->deleteCommentsWithPost($post);
+        } else {
+            $this->profilModel->delete($post);
+        }
+
+        header('Location: ../profil/accueil');
+    }
+
+    public function postAddLike()
+    {
+        $like = $_POST;
+        $this->profilModel->addLike($like);
+        header('Location: ../profil/accueil');
     }
 }

@@ -89,11 +89,73 @@
                         Voir profil
                     </button>
 
+
+
                     <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#commentCollapse<?php echo $profil->idpost ?>">
                         Commenter
                     </button>
 
+
                     <br>
+                    <br>
+
+                    <?php
+                    // Vérifier si l'utilisateur a déjà liké ce post
+                    $hasLiked = $this->profilModel->hasLikedPost(['idpost' => $profil->idpost, 'id_profil' => $_SESSION['id_profil']]); ?>
+
+
+
+
+                    <?php $likes = $this->profilModel->LikeByPost(['idpost' => $profil->idpost]); ?>
+
+                    <?php // Afficher le bouton de like en fonction de la présence ou de l'absence du like
+                    if ($hasLiked) {
+                        // L'utilisateur a déjà liké ce post
+                        echo '
+              <i id="heart" class="fas fa-heart" style= "color: #ff0000"; "display: none;"></i>';
+                    } else { ?>
+                        <form action="../profil/addLike" method="post" class="formLike">
+
+
+                            <input type="hidden" name="idpost" value="<?php echo $profil->idpost ?>">
+                            <input type="hidden" name="id_profil" value="<?php echo $_SESSION['id_profil'] ?>">
+
+                            <button type="submit" class="btn btn-secondary like-button" style="visibility: hidden;" data-post-id="<?php echo $profil->idpost ?>">
+                                <i id="heart" class="fas fa-heart" style="visibility: visible; color: black;"> </i>
+                            </button>
+                            <br>
+                            <br>
+
+
+                            <span id="likeText">
+
+                            </span>
+
+
+
+                            <script>
+                                var heart = document.getElementById("heart");
+                                var likeText = document.getElementById("likeText");
+
+                                heart.addEventListener("click", function() {
+                                    if (heart.style.color === "rgb(255, 0, 0)") {
+                                        heart.style.color = "";
+                                        likeText.innerHTML = "";
+                                    } else {
+                                        heart.style.color = "#ff0000";
+                                        likeText.innerHTML = "<p>Vous avez liké</p>";
+                                    }
+                                });
+                            </script>
+                        </form>
+                    <?php }
+                    ?>
+
+
+                    <p><?php echo $likes ?> personne ont liké ceci</p>
+
+
+
                     <br>
 
                     <!-- Sous commentaire -->
@@ -134,10 +196,6 @@
                             <button type="submit" class="btn btn-primary">Ajouter le commentaire</button>
                         </form>
                     </div>
-
-
-
-
 
 
 

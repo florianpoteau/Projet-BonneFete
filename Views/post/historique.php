@@ -39,7 +39,7 @@
                     <!-- Barre de recherche qui marche enfin là j'ai fais en sorte que ça cherche le pseudo mais tu peux modifié facilement pour que ça recherche le nom de l'utilisateur ATTENTION ça cherche dans les deux container -->
                     <input type="text" class="form-control" placeholder="Recherche pseudo" id="pseudoSearch">
                 </div>
-                <!-- Faux profil pour voir si ça 'affiche bien-->
+                <!-- profil pour voir si ça 'affiche bien-->
 
                 <?php foreach ($profils as $profil) { ?>
                     <div class="card mt-3 mb-3">
@@ -121,6 +121,33 @@
                             <!-- Super admin -->
 
                             <?php if ($_SESSION['id_role'] == 3) { ?>
+
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+                                    Supprimer le compte
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="myModalLabel">Titre du Modal</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <input type="hidden" name="id_profil" value="<?php echo $profil->getId(); ?>">
+
+                                                <p>Etes-vous sur de vouloir supprimer le compte de <?php echo $profil->getNomProfil() ?></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                                <button type="button" class="btn btn-primary">Enregistrer</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <?php if ($profil->getRole() == 2) { ?>
 
