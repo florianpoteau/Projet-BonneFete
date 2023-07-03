@@ -231,12 +231,32 @@ class ProfilModel
 
     public function getAllProfil()
     {
-        $query = $this->connection->getPdo()->prepare("SELECT profil.nom_profil, profil.id_profil, profil.email_profil, role.libelle_role
+        $query = $this->connection->getPdo()->prepare("SELECT profil.nom_profil, profil.id_profil, profil.email_profil, role.libelle_role, profil.id_role
         FROM profil
         INNER JOIN post ON profil.id_profil = post.id_profil
         inner join role on role.id_role = profil.id_role
         GROUP BY profil.nom_profil, profil.id_profil");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Profil");
+    }
+
+    public function ajouterUnModo($role)
+    {
+        $id_profil = $role['id_profil'];
+
+        $query = $this->connection->getPdo()->prepare('UPDATE profil set id_role = 2 WHERE id_profil = :id_profil');
+        $query->execute([
+            'id_profil' => $id_profil
+        ]);
+    }
+
+    public function retrograderModo($role)
+    {
+        $id_profil = $role['id_profil'];
+
+        $query = $this->connection->getPdo()->prepare('UPDATE profil set id_role = 1 WHERE id_profil = :id_profil');
+        $query->execute([
+            'id_profil' => $id_profil
+        ]);
     }
 }

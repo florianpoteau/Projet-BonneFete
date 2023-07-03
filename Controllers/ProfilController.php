@@ -154,4 +154,19 @@ class ProfilController
         $profils = $this->profilModel->getAllProfil();
         require_once 'Views/post/historique.php';
     }
+
+    public function posthistoriquemoderateur()
+    {
+        $role = $_POST;
+        $this->profilModel->ajouterUnModo($role);
+        header('Location: ../profil/historique');
+    }
+
+    public function postRetrograder()
+    {
+
+        $role = $_POST;
+        $this->profilModel->retrograderModo($role);
+        header('Location: ../profil/historique');
+    }
 }

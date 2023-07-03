@@ -12,7 +12,7 @@ class Post
     {
     }
 
-    public function getId()
+    public function getIdRole()
     {
         return $this->id_role;
     }
@@ -23,7 +23,7 @@ class Post
     }
 
 
-    public function setId($id_role)
+    public function setIdRole($id_role)
     {
         $this->id_role = $id_role;
     }
