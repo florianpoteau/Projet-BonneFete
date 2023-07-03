@@ -171,6 +171,10 @@ class ProfilModel
 
         $id_profil =  $_SESSION['id_profil'];
 
+        // Delete associated rows in the "like" table
+        $queryLike = $this->connection->getPdo()->prepare("DELETE FROM `like` WHERE id_profil = :id_profil");
+        $queryLike->execute(['id_profil' => $id_profil]);
+
         $queryProfile = $this->connection->getPdo()->prepare('DELETE FROM profil WHERE id_profil = :id_profil');
         $queryProfile->execute([
             "id_profil" => $id_profil
@@ -303,5 +307,18 @@ class ProfilModel
         ]);
         $result = $query->fetch(PDO::FETCH_ASSOC);
         return $result['like_count'] > 0;
+    }
+
+    public function deleteProfilWithAdmin($delete)
+    {
+        $id_profil = $delete['id_profil'];
+
+
+        $queryLike = $this->connection->getPdo()->prepare("DELETE FROM `like` WHERE id_profil = :id_profil");
+        $queryLike->execute(['id_profil' => $id_profil]);
+
+
+        $queryProfil = $this->connection->getPdo()->prepare("DELETE FROM profil WHERE id_profil = :id_profil");
+        $queryProfil->execute(['id_profil' => $id_profil]);
     }
 }

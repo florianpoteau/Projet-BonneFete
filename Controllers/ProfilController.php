@@ -194,4 +194,11 @@ class ProfilController
         $this->profilModel->addLike($like);
         header('Location: ../profil/accueil');
     }
+
+    public function postdeleteProfilWithAdmin()
+    {
+        $delete = $_POST;
+        $this->profilModel->deleteProfilWithAdmin($delete);
+        header('Location: ../profil/historique');
+    }
 }
