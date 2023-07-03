@@ -211,4 +211,31 @@ class ProfilModel
         $query->execute();
         return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Commentaire");
     }
+
+    public function deleteCommentsWithPost($post)
+    {
+        $idpost = $post['idpost'];
+
+        // Supprimer les commentaires associés au post
+        $queryComment = $this->connection->getPdo()->prepare('DELETE FROM commentaire WHERE idpost = :idpost');
+        $queryComment->execute([
+            "idpost" => $idpost
+        ]);
+
+        // Supprimer le post lui-même
+        $queryPost = $this->connection->getPdo()->prepare('DELETE FROM post WHERE idpost = :idpost');
+        $queryPost->execute([
+            "idpost" => $idpost
+        ]);
+    }
+
+    public function getAllProfil()
+    {
+        $query = $this->connection->getPdo()->prepare("SELECT profil.nom_profil, profil.id_profil
+        FROM profil
+        INNER JOIN post ON profil.id_profil = post.id_profil
+        GROUP BY profil.nom_profil, profil.id_profil");
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Profil");
+    }
 }

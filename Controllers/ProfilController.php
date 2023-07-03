@@ -75,6 +75,8 @@ class ProfilController
         $profils = $this->profilModel->getAll();
         $commentaires = $this->profilModel->getCommentaires();
 
+
+
         require_once 'Views/post/accueil.php';
     }
 
@@ -111,6 +113,14 @@ class ProfilController
         $post = $_POST;
         $this->profilModel->delete($post);
 
+        $commentaires = $this->profilModel->getCommentaires();
+
+        if (!empty($commentaires)) {
+            $this->profilModel->deleteCommentsWithPost($post);
+        } else {
+            $this->profilModel->delete($post);
+        }
+
         header('Location: ../profil/accueil');
     }
 
@@ -134,5 +144,14 @@ class ProfilController
         $idpost = $user['idpost'];
         $this->profilModel->addComments($user, $idpost);
         header('Location: ../profil/accueil');
+    }
+
+    // Historique
+
+    public function getHistorique()
+    {
+        $posts = $this->profilModel->getAll();
+        $profils = $this->profilModel->getAllProfil();
+        require_once 'Views/post/historique.php';
     }
 }
