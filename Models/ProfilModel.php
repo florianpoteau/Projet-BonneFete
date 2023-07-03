@@ -231,9 +231,10 @@ class ProfilModel
 
     public function getAllProfil()
     {
-        $query = $this->connection->getPdo()->prepare("SELECT profil.nom_profil, profil.id_profil
+        $query = $this->connection->getPdo()->prepare("SELECT profil.nom_profil, profil.id_profil, profil.email_profil, role.libelle_role
         FROM profil
         INNER JOIN post ON profil.id_profil = post.id_profil
+        inner join role on role.id_role = profil.id_role
         GROUP BY profil.nom_profil, profil.id_profil");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Profil");
