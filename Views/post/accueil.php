@@ -1,10 +1,18 @@
-<?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\head.php' ?>
+<!DOCTYPE html>
+<html lang="en">
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/f4083a9b2b.js" crossorigin="anonymous"></script>
 
-<title>Accueil</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <title>Accueil</title>
 </head>
 
 <body style="background-color: black;">
@@ -46,6 +54,8 @@
             </div>
         </div>
     </div>
+
+    <?php var_dump($_FILES) ?>
 
     <!-- Card bootstrap pour la liste des posts -->
 
@@ -91,17 +101,27 @@
                     <br class="d-sm-none">
 
                     <!-- Bouton "Voir profil" -->
-                    <button type="button" class="btn btn-warning" style="margin-right: 1%; margin-left: 1%; data-toggle=" modal" data-target="#profileModal<?php echo $profil->getId() ?>" data-id="<?php echo $profil->getId() ?>">
+                    <button type="button" class="btn btn-warning" style="margin-right: 1%;margin-left: 1%;" data-toggle="modal" data-target="#profileModal<?php echo $profil->getId() ?>" data-id="<?php echo $profil->getId() ?>">
                         Voir profil
                     </button>
 
 
 
-                    <button type="button" class="btn btn-success" style="margin-right: 1%; data-toggle=" collapse" data-target="#commentCollapse<?php echo $profil->idpost ?>">
+                    <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#commentCollapse<?php echo $profil->idpost ?>">
                         Commenter
                     </button>
 
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageModal<?php echo $profil->idpost ?>" data-id="<?php echo $profil->getId() ?>">
+                        Ajouter une image
+                    </button>
 
+
+
+                    <?php foreach ($images as $image) {
+
+                        echo "<img src='../Views/post/imagesPost/" . $image['name'] . "' width='50px' alt='rien'><br>";
+                    } ?>
+                    <img src="" alt="">
                     <br>
                     <br>
 
@@ -211,6 +231,38 @@
                 </div>
             </div>
     </div>
+
+    <!-- Modal d'ajout d'image -->
+    <div class="modal fade" id="imageModal<?php echo $profil->idpost ?>" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel<?php echo $profil->idpost ?>" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="imageModalLabel<?php echo $profil->idpost ?>">Ajouter une image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulaire d'ajout d'image -->
+                    <form action="../profil/addImage" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="idpost" value="<?php echo $profil->idpost ?>">
+                        <div class="form-group">
+                            <label for="file">Sélectionnez une image :</label>
+                            <input type="file" class="form-control-file" id="file" name="file" required>
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 
 
     <!-- Modal du bouton modifier -->

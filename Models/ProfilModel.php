@@ -117,6 +117,27 @@ class ProfilModel
         header('Location: ../profil/accueil');
     }
 
+    // ajout image
+
+    public function addImage($file)
+    {
+        $query = $this->connection->getPdo()->prepare('INSERT INTO file (name) VALUES (?)');
+        $query->execute([$file]);
+        echo "Image enregistrée";
+    }
+
+    // Selectionner les images
+
+    public function getImage()
+    {
+
+        $query = $this->connection->getPdo()->prepare('SELECT name from file');
+        $query->execute();
+        $images = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        return $images;
+    }
+
     public function change($user)
     {
         $query = $this->connection->getPdo()->prepare('UPDATE post SET description_post = :description_post WHERE idpost = :idpost');
