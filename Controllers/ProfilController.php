@@ -90,6 +90,7 @@ class ProfilController
     public function getProfil()
     {
         $postUsers = $this->profilModel->allPostByProfil();
+        $infoComptes = $this->profilModel->allInfoByCompte();
         require_once 'Views/post/profil.php';
     }
 
@@ -125,10 +126,10 @@ class ProfilController
         header('Location: ../profil/accueil');
     }
 
-    public function postChangePassword()
+    public function postChangeAccount()
     {
         $user = $_POST;
-        $this->profilModel->changePassword($user);
+        $this->profilModel->changeAccount($user);
         header('Location: ../profil/profil');
     }
 

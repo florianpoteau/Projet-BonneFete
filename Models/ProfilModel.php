@@ -130,24 +130,35 @@ class ProfilModel
     {
         $idpost = $post['idpost'];
 
+        // Delete associated likes for the post
+        $queryLikes = $this->connection->getPdo()->prepare('DELETE FROM `like` WHERE idpost = :idpost');
+        $queryLikes->execute([
+            "idpost" => $idpost
+        ]);
 
-
+        // Delete the post
         $queryPost = $this->connection->getPdo()->prepare('DELETE FROM post WHERE idpost = :idpost');
         $queryPost->execute([
             "idpost" => $idpost
         ]);
     }
 
-    public function changePassword($user)
+
+    public function changeAccount($user)
     {
         $hashedPassword = password_hash($user['mdp_profil'], PASSWORD_DEFAULT);
+        $nomProfil = $user['nom_profil'];
+        $email_profil = $user['email_profil'];
 
         try {
-            $query = $this->connection->getPdo()->prepare('UPDATE profil set mdp_profil = :mdp_profil WHERE id_profil = :id_profil ');
+            $query = $this->connection->getPdo()->prepare('UPDATE profil SET nom_profil = :nom_profil, mdp_profil = :mdp_profil, email_profil = :email_profil WHERE id_profil = :id_profil');
             $query->execute([
                 'id_profil' => $user['id_profil'],
-                'mdp_profil' => $hashedPassword
+                'nom_profil' => $nomProfil,
+                'mdp_profil' => $hashedPassword,
+                'email_profil' => $email_profil
             ]);
+
             return "Bien enregistré";
         } catch (\PDOException $e) {
             return "une erreur est survenue";
@@ -163,6 +174,17 @@ class ProfilModel
             'id_profil' => $id_profil
         ]);
 
+        return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Profil");
+    }
+
+    public function allInfoByCompte()
+    {
+        $id_profil = $_SESSION['id_profil'];
+        $query = $this->connection->getPdo()->prepare('SELECT id_profil, nom_profil, email_profil FROM profil WHERE id_profil = :id_profil');
+
+        $query->execute([
+            'id_profil' => $id_profil
+        ]);
         return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Profil");
     }
 

@@ -120,13 +120,15 @@
 
                             <!-- Super admin -->
 
-                            <?php if ($_SESSION['id_role'] == 3) { ?>
+                            <?php if ($_SESSION['id_role'] == 3 || ($_SESSION['id_role'] == 2 && ($profil->getRole() == 1))) { ?>
 
                                 <?php if ($profil->getRole() == 1 || $profil->getRole() == 2) { ?>
 
                                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal<?php echo $profil->getId() ?>">
                                         Supprimer le compte
                                     </button>
+
+                                    <br>
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="myModal<?php echo $profil->getId() ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
