@@ -11,7 +11,7 @@
 
     <?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\navbar.php' ?>
 
-    <div class="container">
+    <div class="container mx-auto">
 
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -49,11 +49,11 @@
 
     <!-- Card bootstrap pour la liste des posts -->
 
-    <div class="d-flex flex-wrap">
+    <div class="d-flex flex-wrap w-lg-50">
         <?php foreach ($profils as $profil) { ?>
 
-            <div class="card text-center mx-auto mt-5" style="width: 50rem;">
-                <div class="card-body">
+            <div class="card text-center mx-auto mt-5 col-8">
+                <div class=" card-body">
 
                     <?php if ($profil->getId() == $_SESSION['id_profil']) { ?>
                         <p class="card-text">Vous avez posté :</p>
@@ -66,9 +66,13 @@
 
                     <p class="card-text"><?php echo $profil->description_post ?></p>
 
+                    <br>
+
                     <?php if ($_SESSION['id_role'] == 2 || $_SESSION['id_role'] == 3 || $_SESSION['id_profil'] == $profil->getId()) { ?>
 
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal<?php echo $profil->idpost ?>">
+
+
+                        <button type="button" class="btn btn-primary" style="margin-right: 1%;" data-toggle="modal" data-target="#myModal<?php echo $profil->idpost ?>">
                             Modifier
                         </button>
 
@@ -83,15 +87,17 @@
                         </form>
 
                     <?php } ?>
+                    <br class="d-sm-none">
+                    <br class="d-sm-none">
 
                     <!-- Bouton "Voir profil" -->
-                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#profileModal<?php echo $profil->getId() ?>" data-id="<?php echo $profil->getId() ?>">
+                    <button type="button" class="btn btn-warning" style="margin-right: 1%; margin-left: 1%; data-toggle=" modal" data-target="#profileModal<?php echo $profil->getId() ?>" data-id="<?php echo $profil->getId() ?>">
                         Voir profil
                     </button>
 
 
 
-                    <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#commentCollapse<?php echo $profil->idpost ?>">
+                    <button type="button" class="btn btn-success" style="margin-right: 1%; data-toggle=" collapse" data-target="#commentCollapse<?php echo $profil->idpost ?>">
                         Commenter
                     </button>
 
@@ -152,7 +158,7 @@
                     ?>
 
 
-                    <p><?php echo $likes ?> personne ont liké ceci</p>
+                    <p><?php echo $likes ?> personnes ont liké ceci</p>
 
 
 
