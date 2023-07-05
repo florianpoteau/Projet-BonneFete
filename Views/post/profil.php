@@ -1,5 +1,5 @@
-<?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\navbar.php'; ?>
 <?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\head.php'; ?>
+<?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\navbar.php'; ?>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -22,7 +22,7 @@
                         <div class="row align-items-start">
                             <div class="col-md-6">
                                 <div class="left">
-                                    <img src="./Images/image.png" class="rounded-circle mx-auto d-block" alt="Profil" style="width: 50%;">
+                                    <img src="../Views/post/images/profil.png" class="rounded-circle mx-auto d-block mt-5" alt="Profil" style="width: 50%;">
                                 </div>
                             </div>
                             <div class="col-md-6">

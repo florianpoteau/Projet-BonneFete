@@ -114,6 +114,15 @@ class ProfilModel
             "description_post" => $description,
             "date_post" => $date_post
         ]);
+
+
+        $query = $this->connection->getPdo()->prepare("INSERT INTO `log` (`action`, id_profil) VALUES('a créé un post', :id_profil)");
+        $query->execute([
+            "id_profil" => $id_profil,
+        ]);
+
+
+
         header('Location: ../profil/accueil');
     }
 
@@ -378,5 +387,11 @@ class ProfilModel
 
         $queryProfil = $this->connection->getPdo()->prepare("DELETE FROM profil WHERE id_profil = :id_profil");
         $queryProfil->execute(['id_profil' => $id_profil]);
+    }
+    public function getAllLog()
+    {
+        $query = $this->connection->getPdo()->prepare("SELECT action, log.id_profil, profil.nom_profil from log inner join profil on profil.id_profil = log.id_profil order by log.id_log DESC");
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Profil");
     }
 }

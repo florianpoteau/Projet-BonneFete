@@ -225,4 +225,12 @@ class ProfilController
         $this->profilModel->deleteProfilWithAdmin($delete);
         header('Location: ../profil/historique');
     }
+
+    // Logs
+
+    public function getLog()
+    {
+        $logs = $this->profilModel->getAllLog();
+        require_once 'Views/post/log.php';
+    }
 }

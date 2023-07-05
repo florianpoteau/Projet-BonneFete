@@ -16,6 +16,12 @@
                         <a class="nav-link" aria-current="page" href="../profil/historique">Historique</a>
                     </li>
                 <?php } ?>
+
+                <?php if ($_SESSION['id_role'] == 3) { ?>
+                    <li class="nav-item" style="margin-left: 25%; margin-right: 25%; ">
+                        <a class="nav-link" aria-current="page" href="../profil/log">Log</a>
+                    </li>
+                <?php } ?>
             </ul>
         </div>
         <div class="position-absolute top-0 d-lg-none">
