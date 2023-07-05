@@ -10,16 +10,4 @@
             });
         });
     });
-
-    // $('#profileModal').on('show.bs.modal', function(event) {
-    //     var button = $(event.relatedTarget) // Bouton qui a déclenché la modal
-    //     var username = button.data('username') // Récupère le nom d'utilisateur du data-* attribut
-
-    //     // Récupère les informations de profil
-    //     var profileInfo = getProfileInfo(username);
-
-    //     var modal = $(this)
-    //     modal.find('.modal-title').text('Profil de ' + username)
-    //     modal.find('.modal-body').html(profileInfo)
-    // })
 </script>

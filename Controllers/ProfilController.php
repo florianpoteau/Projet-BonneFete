@@ -70,6 +70,12 @@ class ProfilController
         $this->profilModel->login($user);
     }
 
+    public function postDeconnexion()
+    {
+        $this->profilModel->deconnexion();
+        header('Location: ../profil/login');
+    }
+
     public function getAccueil()
     {
 
@@ -141,7 +147,6 @@ class ProfilController
     {
 
         $post = $_POST;
-        $this->profilModel->delete($post);
 
         $commentaires = $this->profilModel->getCommentaires();
         $images = $this->profilModel->getImage();

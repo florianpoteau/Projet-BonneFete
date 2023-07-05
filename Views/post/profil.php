@@ -1,5 +1,5 @@
-<?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\head.php'; ?>
-<?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\navbar.php'; ?>
+<?php require_once 'Views/head.php'; ?>
+<?php require_once 'Views/navbar.php'; ?>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -44,7 +44,10 @@
                             <button type="button" class="btn btn-primary mt-5 mb-2" data-toggle="modal" data-target="#myModal<?php echo $_SESSION['id_profil'] ?>">
                                 Modifier le compte
                             </button>
-                            <a href="../profil/login"><button type="button" class="btn btn-danger mt-5 mb-2">Déconnexion</button></a>
+                            <form action="../profil/deconnexion" method="post">
+                                <button type="submit" class="btn btn-danger mt-5 mb-2">Déconnexion</button>
+
+                            </form>
 
                             <button type="button" class="btn btn-danger mt-5 mb-2" data-toggle="modal" data-target="#confirmModal">Supprimer le compte</button>
 
@@ -215,4 +218,4 @@
     <?php } ?>
 </body>
 
-<?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\foot.php'; ?>
+<?php require_once 'Views/foot.php'; ?>

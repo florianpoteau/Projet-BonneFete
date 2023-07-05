@@ -1,23 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php require_once 'Views/head.php' ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/f4083a9b2b.js" crossorigin="anonymous"></script>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-    <title>Accueil</title>
+<title>Accueil</title>
 </head>
 
 <body style="background-color: black;">
 
-    <?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\navbar.php' ?>
+    <?php require_once 'Views/navbar.php' ?>
 
     <div class="container mx-auto">
 
@@ -251,8 +239,10 @@
                     <form action="../profil/change" method="post">
                         <div class="form-group">
                             <label for="description_post">Entrez votre texte</label>
+                            <input type="hidden" name="id_profil" value="<?php echo $profil->getId() ?>">
                             <input type="text" class="form-control" id="description_post" name="description_post" value="<?php echo $profil->description_post ?>" required>
                             <input type="hidden" name="idpost" value="<?php echo $profil->idpost ?>">
+
                         </div>
 
                 </div>
@@ -306,4 +296,4 @@
 
 </body>
 
-<?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\foot.php' ?>
+<?php require_once 'Views/foot.php' ?>

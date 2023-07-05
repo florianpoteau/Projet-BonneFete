@@ -1,4 +1,4 @@
-<?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\head.php'; ?>
+<?php require_once 'Views/head.php'; ?>
 <title>Connexion</title>
 </head>
 <?php
@@ -57,7 +57,7 @@ if (isset($_SESSION['nom_profil'])) {
         </div>
     </div>
 
-    <?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\foot.php' ?>
+    <?php require_once 'Views/foot.php' ?>
 </body>
 
 </html>

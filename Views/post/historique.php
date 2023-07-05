@@ -1,10 +1,10 @@
-<?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\head.php'; ?> <!-- ATTENTION CHANGE LES REQUIRE-->
+<?php require_once 'Views/head.php'; ?> <!-- ATTENTION CHANGE LES REQUIRE-->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <title>Historique</title>
 </head>
-<?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\navbar.php'; ?> <!-- ATTENTION CHANGE LES REQUIRE-->
+<?php require_once 'Views/navbar.php'; ?> <!-- ATTENTION CHANGE LES REQUIRE-->
 
 <body style="background-color: black;">
     <div class="container-fluid">
@@ -224,4 +224,4 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> <!-- JS -->
     <?php require_once 'recherche.php' ?>
 
-    <?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\foot.php'; ?> <!-- ATTENTION CHANGE LES REQUIRE-->
+    <?php require_once 'Views/foot.php'; ?>

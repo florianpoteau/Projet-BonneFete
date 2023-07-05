@@ -30,8 +30,6 @@ class ProfilModel
     public function createUser($user)
     {
 
-
-
         $existingUser = $this->getUserByUsername($user['nom_profil']);
 
         if ($existingUser) {
@@ -47,10 +45,32 @@ class ProfilModel
                     'nom_profil' => $user['nom_profil'],
                     'mdp_profil' => $hashedPassword
                 ]);
+
+                $id_profil = $this->connection->getPdo()->lastInsertId();
+
+                $query = $this->connection->getPdo()->prepare("INSERT INTO `log` (`action`, id_profil) VALUES('a créé un compte', :id_profil)");
+                $query->execute([
+                    'id_profil' => $id_profil
+                ]);
                 return "Bien enregistré";
             } catch (\PDOException $e) {
                 return "une erreur est survenue";
             }
+        }
+    }
+
+    public function lastInsertId()
+    {
+        $query = $this->connection->getPdo()->prepare('SELECT id_profil from profil ORDER BY id_profil DESC LIMIT 1');
+        $query->execute();
+
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+
+        if ($result !== false) {
+            $id_profil = $result['id_profil'];
+            return $id_profil;
+        } else {
+            return null; // Ou une valeur par défaut si aucun idpost n'est trouvé
         }
     }
 
@@ -95,7 +115,17 @@ class ProfilModel
             $_SESSION['id_role'] = $userCo['id_role'];
             $_SESSION['email_profil'] = $userCo['email_profil'];
             $_SESSION['mdp_profil'] = $password;
+
+            $id_profil = $userCo['id_profil'];
+
+            $query = $this->connection->getPdo()->prepare("INSERT INTO `log` (`action`, id_profil) VALUES(:action, :id_profil)");
+            $query->execute([
+                'action' => "s'est connecté",
+                'id_profil' => $id_profil
+            ]);
             header('Location: ../profil/accueil');
+            return "Bien enregistré";
+
             // require 'C:\xampp\htdocs\Projet-BonneFete\Views\post\accueil.php';
         } else {
             // Les informations d'identification sont incorrectes, affichez un message d'erreur
@@ -170,7 +200,16 @@ class ProfilModel
             "description_post" => $user['description_post'],
             "idpost" => $user['idpost']
         ]);
+
+        $id_profil = $_SESSION['id_profil'];
+
+        $query = $this->connection->getPdo()->prepare("INSERT INTO `log` (`action`, id_profil) VALUES('a modifié un post', :id_profil)");
+        $query->execute([
+            'id_profil' => $id_profil
+        ]);
+        return "Bien enregistré";
     }
+
 
     // Fonction qui supprime un post complet avec les images, les commentaires etc
 
@@ -201,6 +240,14 @@ class ProfilModel
         $queryPost->execute([
             "idpost" => $idpost
         ]);
+
+        $id_profil = $_SESSION['id_profil'];
+
+        $query = $this->connection->getPdo()->prepare("INSERT INTO `log` (`action`, id_profil) VALUES('a supprimer un post', :id_profil)");
+        $query->execute([
+            'id_profil' => $id_profil
+        ]);
+        return "Bien enregistré";
     }
 
 
@@ -219,10 +266,30 @@ class ProfilModel
                 'email_profil' => $email_profil
             ]);
 
+            $id_profil = $_SESSION['id_profil'];
+
+            $query = $this->connection->getPdo()->prepare("INSERT INTO `log` (`action`, id_profil) VALUES('a modifié son profil', :id_profil)");
+            $query->execute([
+                'id_profil' => $id_profil
+            ]);
+            return "Bien enregistré";
+
             return "Bien enregistré";
         } catch (\PDOException $e) {
             return "une erreur est survenue";
         }
+    }
+
+    public function deconnexion()
+    {
+        $id_profil = $_SESSION['id_profil'];
+
+        $query = $this->connection->getPdo()->prepare("INSERT INTO `log` (`action`, id_profil) VALUES(:action, :id_profil)");
+        $query->execute([
+            'action' => "s'est déconnecté",
+            'id_profil' => $id_profil
+        ]);
+        return "Bien enregistré";
     }
 
     public function allPostByProfil()
@@ -257,6 +324,13 @@ class ProfilModel
         $queryLike = $this->connection->getPdo()->prepare("DELETE FROM `like` WHERE id_profil = :id_profil");
         $queryLike->execute(['id_profil' => $id_profil]);
 
+        $query = $this->connection->getPdo()->prepare("INSERT INTO `log` (`action`, id_profil) VALUES(:action, :id_profil)");
+        $query->execute([
+            'action' => 'à supprimer son compte',
+            'id_profil' => $id_profil
+        ]);
+        return "Bien enregistré";
+
         $queryProfile = $this->connection->getPdo()->prepare('DELETE FROM profil WHERE id_profil = :id_profil');
         $queryProfile->execute([
             "id_profil" => $id_profil
@@ -286,6 +360,12 @@ class ProfilModel
             "commentaire" => $commentaire,
             "date_commentaire" => $date_commentaire
         ]);
+
+        $query = $this->connection->getPdo()->prepare("INSERT INTO `log` (`action`, id_profil) VALUES('a commenté un post', :id_profil)");
+        $query->execute([
+            'id_profil' => $id_profil
+        ]);
+        return "Bien enregistré";
     }
 
     public function getCommentaires()
@@ -390,7 +470,7 @@ class ProfilModel
     }
     public function getAllLog()
     {
-        $query = $this->connection->getPdo()->prepare("SELECT action, log.id_profil, profil.nom_profil from log inner join profil on profil.id_profil = log.id_profil order by log.id_log DESC");
+        $query = $this->connection->getPdo()->prepare("SELECT action, log.id_profil, profil.nom_profil from log inner join profil on profil.id_profil = log.id_profil order by log.id_log DESC LIMIT 20");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Profil");
     }

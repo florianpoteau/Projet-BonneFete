@@ -1,4 +1,4 @@
-<?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\head.php';
+<?php require_once 'Views/head.php';
 
 
 ?>
@@ -56,7 +56,7 @@
     </div>
   </div>
 
-  <?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\foot.php' ?>
+  <?php require_once 'Views/foot.php' ?>
 </body>
 
 </html>

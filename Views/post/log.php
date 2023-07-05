@@ -1,5 +1,5 @@
-<?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\head.php'; ?>
-<?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\navbar.php'; ?>
+<?php require_once 'Views\head.php'; ?>
+<?php require_once 'Views/navbar.php' ?>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -22,3 +22,5 @@
     <?php } ?>
 
 </body>
+
+<?php require_once 'Views/foot.php' ?>
