@@ -85,10 +85,38 @@ class ProfilController
     {
         $user = $_POST;
         $this->profilModel->addPost($user);
+
+        $idpost = $this->profilModel->getLastInsertId();
+
+        if (isset($_FILES['file'])) {
+            $tmpName = $_FILES['file']['tmp_name'];
+            $name = $_FILES['file']['name'];
+            $size = $_FILES['file']['size'];
+            $error = $_FILES['file']['error'];
+            $tabExtension = explode('.', $name);
+            $extension = strtolower(end($tabExtension));
+
+            //Tableau des extensions que l'on accepte
+            $extensions = ['jpg', 'png', 'jpeg', 'gif'];
+
+            $maxSize = 400000;
+            if (in_array($extension, $extensions) && $size <= $maxSize && $error == 0) {
+                $uniqueName = uniqid('', true);
+                //uniqid génère quelque chose comme ca : 5f586bf96dcd38.73540086
+                $file = $uniqueName . "." . $extension;
+                //$file = 5f586bf96dcd38.73540086.jpg
+                move_uploaded_file($tmpName, 'Views/post/imagesPost/' . $file);
+
+                $this->profilModel->addImage($file, $idpost);
+            } else {
+                echo "Mauvaise extension ou taille trop grande";
+            }
+        }
     }
 
     public function getProfil()
     {
+        $images = $this->profilModel->getImage();
         $postUsers = $this->profilModel->allPostByProfil();
         $infoComptes = $this->profilModel->allInfoByCompte();
         require_once 'Views/post/profil.php';
@@ -116,12 +144,10 @@ class ProfilController
         $this->profilModel->delete($post);
 
         $commentaires = $this->profilModel->getCommentaires();
+        $images = $this->profilModel->getImage();
 
-        if (!empty($commentaires)) {
-            $this->profilModel->deleteCommentsWithPost($post);
-        } else {
-            $this->profilModel->delete($post);
-        }
+
+        $this->profilModel->delete($post);
 
         header('Location: ../profil/accueil');
     }
@@ -145,40 +171,6 @@ class ProfilController
         $user = $_POST;
         $idpost = $user['idpost'];
         $this->profilModel->addComments($user, $idpost);
-        header('Location: ../profil/accueil');
-    }
-
-    // Image
-
-    public function postaddImage()
-    {
-
-
-        if (isset($_FILES['file'])) {
-            $tmpName = $_FILES['file']['tmp_name'];
-            $name = $_FILES['file']['name'];
-            $size = $_FILES['file']['size'];
-            $error = $_FILES['file']['error'];
-            $tabExtension = explode('.', $name);
-            $extension = strtolower(end($tabExtension));
-
-            //Tableau des extensions que l'on accepte
-            $extensions = ['jpg', 'png', 'jpeg', 'gif'];
-
-            $maxSize = 400000;
-            if (in_array($extension, $extensions) && $size <= $maxSize && $error == 0) {
-                $uniqueName = uniqid('', true);
-                //uniqid génère quelque chose comme ca : 5f586bf96dcd38.73540086
-                $file = $uniqueName . "." . $extension;
-                //$file = 5f586bf96dcd38.73540086.jpg
-                move_uploaded_file($tmpName, 'Views/post/imagesPost/' . $file);
-
-                $this->profilModel->addImage($file);
-            } else {
-                echo "Mauvaise extension ou taille trop grande";
-            }
-        }
-
         header('Location: ../profil/accueil');
     }
 
@@ -214,11 +206,8 @@ class ProfilController
 
         $commentaires = $this->profilModel->getCommentaires();
 
-        if (!empty($commentaires)) {
-            $this->profilModel->deleteCommentsWithPost($post);
-        } else {
-            $this->profilModel->delete($post);
-        }
+
+        $this->profilModel->delete($post);
 
         header('Location: ../profil/accueil');
     }

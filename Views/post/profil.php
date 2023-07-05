@@ -148,6 +148,11 @@
                 <div class="col-sm-8">
                     <div class="card mt-5">
                         <div class="card-body">
+                            <?php foreach ($images as $image) {
+                                if ($image['idpost'] == $profil->idpost) {
+                                    echo "<img src='../Views/post/imagesPost/" . $image['name'] . "' width='100px' alt='rien'><br>";
+                                }
+                            } ?>
                             <h5 class="card-title"><?php echo $profil->getNomProfil() ?></h5>
                             <p class="card-text"><?php echo $profil->description_post ?></p>
                         </div>

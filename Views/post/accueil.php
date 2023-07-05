@@ -27,7 +27,7 @@
                     <div class="card-body">
                         <h2 class="card-title text-center">Ajouter un post</h2>
 
-                        <form action="../profil/accueil" method="post">
+                        <form action="../profil/accueil" method="post" enctype="multipart/form-data">
 
 
                             <br>
@@ -36,6 +36,14 @@
                                 <label for="description_post">Entrez votre texte</label>
                                 <input type="text" class="form-control" id="description_post" name="description_post" maxlength="200" required>
 
+                            </div>
+
+                            <br>
+                            <div class="form-group">
+
+
+                                <label for="file">Ajouter une image</label>
+                                <input type="file" class="form-control-file" id="file" name="file">
                             </div>
 
                             <br>
@@ -55,8 +63,6 @@
         </div>
     </div>
 
-    <?php var_dump($_FILES) ?>
-
     <!-- Card bootstrap pour la liste des posts -->
 
     <div class="d-flex flex-wrap w-lg-50">
@@ -73,6 +79,14 @@
                         </p>
 
                     <?php } ?>
+
+                    <?php foreach ($images as $image) {
+                        if ($image['idpost'] == $profil->idpost) {
+                            echo "<img src='../Views/post/imagesPost/" . $image['name'] . "' width='100px' alt='rien'><br>";
+                        }
+                    } ?>
+
+                    <br>
 
                     <p class="card-text"><?php echo $profil->description_post ?></p>
 
@@ -105,22 +119,11 @@
                         Voir profil
                     </button>
 
-
-
                     <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#commentCollapse<?php echo $profil->idpost ?>">
                         Commenter
                     </button>
 
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageModal<?php echo $profil->idpost ?>" data-id="<?php echo $profil->getId() ?>">
-                        Ajouter une image
-                    </button>
 
-
-
-                    <?php foreach ($images as $image) {
-
-                        echo "<img src='../Views/post/imagesPost/" . $image['name'] . "' width='50px' alt='rien'><br>";
-                    } ?>
                     <img src="" alt="">
                     <br>
                     <br>
@@ -231,38 +234,6 @@
                 </div>
             </div>
     </div>
-
-    <!-- Modal d'ajout d'image -->
-    <div class="modal fade" id="imageModal<?php echo $profil->idpost ?>" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel<?php echo $profil->idpost ?>" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="imageModalLabel<?php echo $profil->idpost ?>">Ajouter une image</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!-- Formulaire d'ajout d'image -->
-                    <form action="../profil/addImage" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="idpost" value="<?php echo $profil->idpost ?>">
-                        <div class="form-group">
-                            <label for="file">Sélectionnez une image :</label>
-                            <input type="file" class="form-control-file" id="file" name="file" required>
-                        </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
-
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
 
 
     <!-- Modal du bouton modifier -->

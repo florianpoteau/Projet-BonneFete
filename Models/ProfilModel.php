@@ -119,11 +119,27 @@ class ProfilModel
 
     // ajout image
 
-    public function addImage($file)
+    public function addImage($file, $idpost)
     {
-        $query = $this->connection->getPdo()->prepare('INSERT INTO file (name) VALUES (?)');
-        $query->execute([$file]);
+
+        $query = $this->connection->getPdo()->prepare('INSERT INTO file (name, idpost) VALUES (?, ?)');
+        $query->execute([$file, $idpost]);
         echo "Image enregistrée";
+    }
+
+    public function getLastInsertId()
+    {
+        $query = $this->connection->getPdo()->prepare('SELECT idpost from post ORDER BY idpost DESC LIMIT 1');
+        $query->execute();
+
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+
+        if ($result !== false) {
+            $idpost = $result['idpost'];
+            return $idpost;
+        } else {
+            return null; // Ou une valeur par défaut si aucun idpost n'est trouvé
+        }
     }
 
     // Selectionner les images
@@ -131,7 +147,7 @@ class ProfilModel
     public function getImage()
     {
 
-        $query = $this->connection->getPdo()->prepare('SELECT name from file');
+        $query = $this->connection->getPdo()->prepare('SELECT name, idpost from file');
         $query->execute();
         $images = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -147,9 +163,23 @@ class ProfilModel
         ]);
     }
 
+    // Fonction qui supprime un post complet avec les images, les commentaires etc
+
     public function delete($post)
     {
         $idpost = $post['idpost'];
+
+        // Supprimer les commentaires associés au post
+        $queryComment = $this->connection->getPdo()->prepare('DELETE FROM commentaire WHERE idpost = :idpost');
+        $queryComment->execute([
+            "idpost" => $idpost
+        ]);
+
+        // Delete associated likes for the post
+        $queryLikes = $this->connection->getPdo()->prepare('DELETE FROM `file` WHERE idpost = :idpost');
+        $queryLikes->execute([
+            "idpost" => $idpost
+        ]);
 
         // Delete associated likes for the post
         $queryLikes = $this->connection->getPdo()->prepare('DELETE FROM `like` WHERE idpost = :idpost');
@@ -190,7 +220,7 @@ class ProfilModel
     {
         $id_profil = $_SESSION['id_profil'];
 
-        $query = $this->connection->getPdo()->prepare('SELECT post.idpost, post.description_post FROM post INNER JOIN profil ON post.id_profil = profil.id_profil WHERE profil.id_profil = :id_profil');
+        $query = $this->connection->getPdo()->prepare('SELECT post.idpost, post.description_post FROM post INNER JOIN profil ON post.id_profil = profil.id_profil WHERE profil.id_profil = :id_profil order by post.idpost DESC');
         $query->execute([
             'id_profil' => $id_profil
         ]);
@@ -256,22 +286,7 @@ class ProfilModel
         return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Commentaire");
     }
 
-    public function deleteCommentsWithPost($post)
-    {
-        $idpost = $post['idpost'];
 
-        // Supprimer les commentaires associés au post
-        $queryComment = $this->connection->getPdo()->prepare('DELETE FROM commentaire WHERE idpost = :idpost');
-        $queryComment->execute([
-            "idpost" => $idpost
-        ]);
-
-        // Supprimer le post lui-même
-        $queryPost = $this->connection->getPdo()->prepare('DELETE FROM post WHERE idpost = :idpost');
-        $queryPost->execute([
-            "idpost" => $idpost
-        ]);
-    }
 
     public function getAllUsers()
     {
