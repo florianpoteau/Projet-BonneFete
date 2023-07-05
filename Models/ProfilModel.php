@@ -324,12 +324,12 @@ class ProfilModel
         $queryLike = $this->connection->getPdo()->prepare("DELETE FROM `like` WHERE id_profil = :id_profil");
         $queryLike->execute(['id_profil' => $id_profil]);
 
-        $query = $this->connection->getPdo()->prepare("INSERT INTO `log` (`action`, id_profil) VALUES(:action, :id_profil)");
-        $query->execute([
-            'action' => 'à supprimer son compte',
-            'id_profil' => $id_profil
-        ]);
-        return "Bien enregistré";
+        $queryLog = $this->connection->getPdo()->prepare("DELETE FROM `log` WHERE id_profil = :id_profil");
+        $queryLog->execute(['id_profil' => $id_profil]);
+
+        $queryComment = $this->connection->getPdo()->prepare("DELETE FROM `commentaire` WHERE id_profil = :id_profil");
+        $queryComment->execute(['id_profil' => $id_profil]);
+
 
         $queryProfile = $this->connection->getPdo()->prepare('DELETE FROM profil WHERE id_profil = :id_profil');
         $queryProfile->execute([
@@ -397,16 +397,44 @@ class ProfilModel
 
     public function ajouterUnModo($role)
     {
+
+        $id_profil = $_SESSION['id_profil'];
+
+        $nom_profil = $role['nom_profil'];
+
+        $action = "a promu $nom_profil au rang de modérateur";
+
+        $query = $this->connection->getPdo()->prepare("INSERT INTO `log` (`action`, id_profil) VALUES(:action, :id_profil)");
+
+        $query->execute([
+            'action' => $action,
+            'id_profil' => $id_profil
+        ]);
+
         $id_profil = $role['id_profil'];
 
-        $query = $this->connection->getPdo()->prepare('UPDATE profil set id_role = 2 WHERE id_profil = :id_profil');
+        $query = $this->connection->getPdo()->prepare('UPDATE profil SET id_role = 2 WHERE id_profil = :id_profil');
         $query->execute([
             'id_profil' => $id_profil
         ]);
     }
 
+
     public function retrograderModo($role)
     {
+
+        $id_profil = $_SESSION['id_profil'];
+
+        $nom_profil = $role['nom_profil'];
+
+        $action = "a rétrogradé $nom_profil au rang de modérateur";
+
+        $query = $this->connection->getPdo()->prepare("INSERT INTO `log` (`action`, id_profil) VALUES(:action, :id_profil)");
+        $query->execute([
+            'action' => $action,
+            'id_profil' => $id_profil
+        ]);
+
         $id_profil = $role['id_profil'];
 
         $query = $this->connection->getPdo()->prepare('UPDATE profil set id_role = 1 WHERE id_profil = :id_profil');
@@ -460,10 +488,14 @@ class ProfilModel
     {
         $id_profil = $delete['id_profil'];
 
-
         $queryLike = $this->connection->getPdo()->prepare("DELETE FROM `like` WHERE id_profil = :id_profil");
         $queryLike->execute(['id_profil' => $id_profil]);
 
+        $queryComment = $this->connection->getPdo()->prepare("DELETE FROM `commentaire` WHERE id_profil = :id_profil");
+        $queryComment->execute(['id_profil' => $id_profil]);
+
+        $queryLog = $this->connection->getPdo()->prepare("DELETE FROM `log` WHERE id_profil = :id_profil");
+        $queryLog->execute(['id_profil' => $id_profil]);
 
         $queryProfil = $this->connection->getPdo()->prepare("DELETE FROM profil WHERE id_profil = :id_profil");
         $queryProfil->execute(['id_profil' => $id_profil]);

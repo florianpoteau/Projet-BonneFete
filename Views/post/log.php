@@ -1,26 +1,30 @@
-<?php require_once 'Views\head.php'; ?>
-<?php require_once 'Views/navbar.php' ?>
+<?php if ($_SESSION['id_role'] == 3) { ?>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <?php require_once 'Views\head.php'; ?>
+    <?php require_once 'Views/navbar.php' ?>
 
-<title>Log</title>
-</head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<body style="background-color: black;">
+    <title>Log</title>
+    </head>
 
-    <?php foreach ($logs as $log) { ?>
+    <body style="background-color: black;">
 
-        <div class="d-flex justify-content-center mt-5">
-            <div class="card" style="width: 50%;">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $log->getNomProfil() ?> <?php echo $log->action ?></h5>
+        <?php foreach ($logs as $log) { ?>
+
+            <div class="d-flex justify-content-center mt-5">
+                <div class="card" style="width: 50%;">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $log->getNomProfil() ?> <?php echo $log->action ?></h5>
+                    </div>
                 </div>
             </div>
-        </div>
 
-    <?php } ?>
+        <?php } ?>
 
-</body>
+    </body>
 
-<?php require_once 'Views/foot.php' ?>
+    <?php require_once 'Views/foot.php'; ?>
+
+<?php } ?>
