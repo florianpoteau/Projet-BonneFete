@@ -1,7 +1,8 @@
 <?php if ($_SESSION['id_role'] == 3 || $_SESSION['id_role'] == 2) { ?>
 
     <?php require_once 'Views/head.php'; ?> <!-- ATTENTION CHANGE LES REQUIRE-->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <!-- Inclure jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <title>Historique</title>
@@ -14,20 +15,17 @@
                 <!-- container gauche -->
                 <div class="col-lg-9 order-1">
                     <div class="wrapper">
-                        <div class="row flex-wrap">
-
-                            <!-- Vrai post enfin tu dois changer pour que ça fonctionne avec la bdd mais je peux pas vérifier si ça marche faudra surement réviser ou contacte moi-->
-
+                        <div id="card-container-left" class="row flex-wrap">
                             <?php foreach ($posts as $post) { ?>
                                 <div class="col-md-4">
                                     <div class="card mt-3">
                                         <div class="card-body">
                                             <input type="hidden" name="idpost" value="<?php echo $post->getId() ?>">
 
-                                            <p class="card-text">
+                                            <p class="card-title">
                                                 <?php echo $post->getNomProfil()  ?> a posté:
                                             </p>
-                                            <p class="card-text1"><?php echo $post->description_post ?></p>
+                                            <p class="card-text"><?php echo $post->description_post ?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -35,6 +33,7 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- container droit -->
                 <div class="col-lg-3 order-lg-2">
                     <div class="input-group mt-3 mb-3 order-lg-1">
@@ -217,7 +216,10 @@
 
         </div>
 
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> <!-- JS -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
         <?php require_once 'recherche.php' ?>
 
         <?php require_once 'Views\foot.php'; ?>
