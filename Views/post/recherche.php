@@ -1,15 +1,17 @@
 <script>
     // Initialise Isotope container gauche
-    var $grid = $('.wrapper').isotope({
-        itemSelector: '.card',
-        getSortData: {
-            selected: function(itemElem) {
-                var $item = $(itemElem);
-                return ($item.hasClass('selected') ? -1 : 1);
-            }
-        },
-        sortBy: 'selected'
-    });
+    if ($('.wrapper .card').length) {
+        var $grid = $('.wrapper').isotope({
+            itemSelector: '.card',
+            getSortData: {
+                selected: function(itemElem) {
+                    var $item = $(itemElem);
+                    return ($item.hasClass('selected') ? -1 : 1);
+                }
+            },
+            sortBy: 'selected'
+        });
+    }
     
     // Initialise Isotope container droite
     var $gridRight = $('.wrapper-right').isotope({
@@ -23,37 +25,40 @@
     sortBy: 'selected'
 });
 
-    $(document).ready(function() {
-    $("#pseudoSearch").on("keyup", debounce(function() {
-        var value = $("#pseudoSearch").val();
-    
-        if (value !== undefined && value !== null) {
-            value = value.toLowerCase();
+    // Fonction de filtrage avec debounce
+    var filterItems = debounce(function() {
+            var searchValue = $('#pseudoSearch').val().toLowerCase();
 
-            // Enlevez la classe selected de tous les éléments dans les deux conteneurs
-            $grid.find('.card').removeClass('selected'); 
-            $gridRight.find('.card').removeClass('selected'); 
+            // Filtrer les profils
+            $('.card').each(function() {
+                var cardTitle = $(this).find('.card-title').text().toLowerCase();
 
-            // Filtre les éléments de toutes les cartes
-            $(".card").filter(function() {
-                var cardTitle = $(this).find(".card-title");
-                var match = false;
-                if (cardTitle.length > 0 && cardTitle.text().trim() !== "") {
-                match = cardTitle.text().toLowerCase().startsWith(value);
-                }
-                $(this).toggle(match);
-
-                if (match) {
-                    $(this).addClass('selected');
+                if (cardTitle.includes(searchValue)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
                 }
             });
 
-            // Réorganise de nouveaux l'ordre de tri dans les deux conteneurs
-            $grid.isotope();
-            $gridRight.isotope();
-        }
-        }, 200));
-    });
+            // Filtrer les posts
+            $('.card-body').each(function() {
+                var cardTitle = $(this).find('.card-title').text().toLowerCase();
+
+                if (cardTitle.includes(searchValue)) {
+                    $(this).closest('.col-md-4').show();
+                } else {
+                    $(this).closest('.col-md-4').hide();
+                }
+            });
+
+            // Mettre à jour Isotope après le filtrage
+            $grid.isotope('layout');
+            $gridRight.isotope('layout');
+        }, 300); // Délai de 300 ms
+
+        // Écouter les changements dans la barre de recherche
+        $('#pseudoSearch').on('input', filterItems);
+
 
     // debounce pour éviter un filtrage à chaque milliseconde
     function debounce(fn, threshold) {

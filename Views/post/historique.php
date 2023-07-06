@@ -5,49 +5,30 @@
 
 <body style="background-color: black;">
     <div class="container-fluid">
-        <div class="row">
+    <div class="row">
             <!-- container gauche -->
             <div class="col-lg-9">
                 <div class="wrapper">
                     <div class="row flex-wrap">
-                        <div class="col-md-4">
-                            <div class="card mt-3" data-name="marco">
-                                <div class="card-body">
-                                    <input type="hidden" name="idpost" value="1">
-                                    <p class="card-title">Marco a posté:</p>
-                                    <p class="card-text">Description de l'événement test</p>
+                        <?php if (!empty($posts)) { // Si des posts existent
+                            foreach ($posts as $post) { ?>
+                                <div class="col-md-4">
+                                    <div class="card mt-3">
+                                        <div class="card-body">
+                                            <input type="hidden" name="idpost" value="<?php echo $post->getId() ?>">
+                                            <p class="card-title">
+                                                <?php echo $post->getNomProfil() ?> a posté:
+                                            </p>
+                                            <p class="card-text"><?php echo $post->description_post ?></p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card mt-3" data-name="flo">
-                                <div class="card-body">
-                                    <input type="hidden" name="idpost" value="1">
-                                    <p class="card-title">Flo a posté:</p>
-                                    <p class="card-text">Description de l'événement test</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card mt-3" data-name="miam">
-                                <div class="card-body">
-                                    <input type="hidden" name="idpost" value="1">
-                                    <p class="card-title">Miam a posté:</p>
-                                    <p class="card-text">Description de l'événement test</p>
-                                </div>
-                            </div>
-                        </div>
-
-            <!-- Vrai post enfin tu dois changer pour que ça fonctionne avec la bdd mais je peux pas vérifier si ça marche faudra surement réviser ou contacte moi-->
-            <?php foreach ($posts as $post) { ?>
+                            <?php }
+                        } else { // Si aucun post n'existe ?>
                             <div class="col-md-4">
                                 <div class="card mt-3">
                                     <div class="card-body">
-                                        <input type="hidden" name="idpost" value="<?php echo $post->getId() ?>">
-                                        <p class="card-title">
-                                            <?php echo $post->getNomProfil()  ?> a posté:
-                                        </p>
-                                        <p class="card-text"><?php echo $post->description_post ?></p>
+                                        <p class="card-title">Aucun post à afficher</p>
                                     </div>
                                 </div>
                             </div>
@@ -61,29 +42,6 @@
                     <input type="text" class="form-control" placeholder="Recherche pseudo" id="pseudoSearch">
                 </div>
                 <div class="wrapper-right">
-                    <div class="card mt-3 mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Marco</h5>
-                            <input type="hidden" name="id_profil" value="1">
-                        </div>
-                    </div>
-
-                    <div class="card mt-3 mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Flo</h5>
-                            <input type="hidden" name="id_profil" value="1">
-                        </div>
-                    </div>
-
-                    <div class="card mt-3 mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Miam</h5>
-                            <input type="hidden" name="id_profil" value="1">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
                     <?php foreach ($profils as $profil) { ?>
                         <div class="card mt-3 mb-3">
                             <div class="card-body">
