@@ -30,13 +30,28 @@ class ProfilController
         $existingEmail = $this->profilModel->getEmail($user['email_profil']);
 
         if (!$this->emailExists($email)) {
-            echo "L'adresse e-mail n'existe pas";
+?>
+            <script>
+                alert("L'adresse email n'existe pas");
+                window.location.href = "../profil/index";
+            </script>
+        <?php
             return;
         } elseif ($existingUser) {
-            echo "Nom d'utilisateur déjà utilisé";
+        ?>
+            <script>
+                alert("Nom d'utilisateur déja utilisé");
+                window.location.href = "../profil/index";
+            </script>
+        <?php
             return;
         } elseif ($existingEmail) {
-            echo 'Adresse email déja utilisé';
+        ?>
+            <script>
+                alert("Adresse email déja utilisé");
+                window.location.href = "../profil/index";
+            </script>
+<?php
             return;
         } else {
             $this->profilModel->createUser($user);

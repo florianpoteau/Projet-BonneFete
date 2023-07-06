@@ -129,7 +129,16 @@ class ProfilModel
             // require 'C:\xampp\htdocs\Projet-BonneFete\Views\post\accueil.php';
         } else {
             // Les informations d'identification sont incorrectes, affichez un message d'erreur
-            echo "Nom d'utilisateur ou mot de passe incorrect";
+?>
+
+            <script>
+                alert("Nom d'utilisateur ou mot de passe incorrect");
+                window.location.href = "../profil/login";
+            </script>
+
+
+
+<?php
         }
     }
 
