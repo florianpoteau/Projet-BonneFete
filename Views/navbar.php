@@ -11,7 +11,7 @@
                     <a class="nav-link active" aria-current="page" href="../profil/accueil">Accueil</a>
                 </li>
 
-                <?php if ($_SESSION['id_role'] == 2 || $_SESSION['id_role'] == 3) { ?>
+                <?php if ($_SESSION['id_role'] == 1 || $_SESSION['id_role'] == 2 || $_SESSION['id_role'] == 3) { ?>
                     <li class="nav-item" style="margin-left: 25%; margin-right: 25%; ">
                         <a class="nav-link" aria-current="page" href="../profil/historique">Historique</a>
                     </li>
