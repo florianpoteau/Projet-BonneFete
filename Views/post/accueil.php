@@ -242,7 +242,7 @@
                             <div class="form-group">
                                 <label for="description_post">Entrez votre texte</label>
                                 <input type="hidden" name="id_profil" value="<?php echo $profil->getId() ?>">
-                                <input type="text" class="form-control" id="description_post" name="description_post" value="<?php echo $profil->description_post ?>" required>
+                                <input type="text" class="form-control" id="description_post" name="description_post" value="<?php echo $profil->description_post ?>" maxlength="200" required>
                                 <input type="hidden" name="idpost" value="<?php echo $profil->idpost ?>">
 
                             </div>
