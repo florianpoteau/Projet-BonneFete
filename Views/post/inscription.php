@@ -7,14 +7,14 @@
 </head>
 
 
-<body class="bg-black">
+<body class="bg-black text-open-sans">
 
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="card mt-5">
           <div class="card-body">
-            <h2 class="card-title text-center">Inscription</h2>
+            <h2 class="card-title text-center text-Montserrat">Inscription</h2>
 
             <form action="../profil/register" method="post">
 

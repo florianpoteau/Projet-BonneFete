@@ -5,7 +5,7 @@
     <title>Accueil</title>
     </head>
 
-    <body style="background-color: black;">
+    <body class=" text-open-sans" style="background-color: black;">
 
         <?php require_once 'Views/navbar.php' ?>
 
@@ -15,7 +15,7 @@
                 <div class="col-md-6">
                     <div class="card mt-5">
                         <div class="card-body">
-                            <h2 class="card-title text-center">Ajouter un post</h2>
+                            <h2 class="card-title text-center text-Montserrat">Ajouter un post</h2>
 
                             <form action="../profil/accueil" method="post" enctype="multipart/form-data">
 
