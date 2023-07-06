@@ -9,7 +9,7 @@
     <title>Log</title>
     </head>
 
-    <body style="background-color: black;">
+    <body style="background-color: black;" class="text-open-sans">
 
         <?php foreach ($logs as $log) { ?>
 

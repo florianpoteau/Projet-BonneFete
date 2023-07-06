@@ -9,7 +9,7 @@
     </head>
     <?php require_once 'Views/navbar.php'; ?> <!-- ATTENTION CHANGE LES REQUIRE-->
 
-    <body style="background-color: black;">
+    <body style="background-color: black;" class="text-open-sans">
         <div class="container-fluid">
             <div class="row">
                 <!-- container gauche -->
