@@ -20,7 +20,7 @@
 
               <div class="form-group">
                 <label for="nom_profil">Nom d'utilisateur:</label>
-                <input type="text" class="form-control" id="nom_profil" name="nom_profil" minlength="8" required>
+                <input type="text" class="form-control" id="nom_profil" name="nom_profil" minlength="3" required>
               </div>
 
               <br>

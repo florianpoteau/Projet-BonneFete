@@ -10,7 +10,7 @@
     </head>
 
 
-    <body style="background-color: black;">
+    <body style="background-color: black;" class="text-open-sans">
 
 
 
@@ -30,7 +30,7 @@
                                 <div class="col-md-6">
                                     <div class="right">
                                         <?php foreach ($infoComptes as $infoCompte) { ?>
-                                            <h2 class="card-title mt-3"><?php echo $infoCompte->getNomProfil() ?></h2>
+                                            <h2 class="card-title mt-3 text-Montserrat"><?php echo $infoCompte->getNomProfil() ?></h2>
 
 
                                             <p>Username</p>

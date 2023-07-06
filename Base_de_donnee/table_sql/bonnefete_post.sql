@@ -29,7 +29,7 @@ CREATE TABLE `post` (
   `date_post` date DEFAULT NULL,
   PRIMARY KEY (`idpost`),
   KEY `fk_post_profil` (`id_profil`)
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `post` (
 
 LOCK TABLES `post` WRITE;
 /*!40000 ALTER TABLE `post` DISABLE KEYS */;
-INSERT INTO `post` VALUES (48,'J\'ajoute un post',21,'2023-07-01'),(49,'Je suis super admin et vous ?',21,'2023-07-01'),(50,'Bonjour',22,'2023-07-01'),(54,'je suis polo, enchanté',25,'2023-07-01'),(57,'OH... je peux poster des posts, ce site est génial, les développeurs ont fait un excellent travail. Waouh!!!',21,'2023-07-03'),(59,'HELLO WORLD',22,'2023-07-03'),(60,'Bonjour',21,'2023-07-03'),(61,'HELLO',26,'2023-07-03'),(65,'HI',21,'2023-07-03'),(67,'higgcgc',32,'2023-07-04'),(74,'Bonjour',21,'2023-07-04'),(75,'HELLO',38,'2023-07-04'),(76,'Bonjour',21,'2023-07-04');
+INSERT INTO `post` VALUES (48,'J\'ajoute un post',21,'2023-07-01'),(49,'Je suis super admin et vous ?',21,'2023-07-01'),(50,'Bonjour',22,'2023-07-01'),(54,'je suis polo, enchanté',25,'2023-07-01'),(57,'OH... je peux poster des posts, ce site est génial, les développeurs ont fait un excellent travail. Waouh!!!',21,'2023-07-03'),(59,'HELLO WORLD',22,'2023-07-03'),(61,'HELLO',26,'2023-07-03'),(67,'higgcgc',32,'2023-07-04'),(126,'Ce site est excellent',21,'2023-07-05'),(128,'Salut',47,'2023-07-05'),(132,'gfdgfdgf',54,'2023-07-05'),(133,'FDGFGGF',55,'2023-07-05'),(134,'fdfd',56,'2023-07-05');
 /*!40000 ALTER TABLE `post` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-04 11:47:58
+-- Dump completed on 2023-07-06 11:36:19
