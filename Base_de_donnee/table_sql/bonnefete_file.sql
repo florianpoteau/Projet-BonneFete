@@ -16,36 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `profil`
+-- Table structure for table `file`
 --
 
-DROP TABLE IF EXISTS `profil`;
+DROP TABLE IF EXISTS `file`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `profil` (
-  `id_profil` int NOT NULL AUTO_INCREMENT,
-  `email_profil` varchar(100) NOT NULL,
-  `mdp_profil` varchar(100) DEFAULT NULL,
-  `nom_profil` varchar(30) NOT NULL,
-  `id_role` int NOT NULL,
+CREATE TABLE `file` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
   `idpost` int DEFAULT NULL,
-  PRIMARY KEY (`id_profil`),
-  KEY `id_role_idx` (`id_role`),
+  PRIMARY KEY (`id`),
   KEY `idpost` (`idpost`),
-  CONSTRAINT `fk_idpost` FOREIGN KEY (`idpost`) REFERENCES `post` (`idpost`),
-  CONSTRAINT `id_role` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`),
-  CONSTRAINT `idpost` FOREIGN KEY (`idpost`) REFERENCES `post` (`idpost`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `file_ibfk_1` FOREIGN KEY (`idpost`) REFERENCES `post` (`idpost`)
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `profil`
+-- Dumping data for table `file`
 --
 
-LOCK TABLES `profil` WRITE;
-/*!40000 ALTER TABLE `profil` DISABLE KEYS */;
-INSERT INTO `profil` VALUES (21,'florianpoteau2@gmail.com','$2y$10$/gV4bcn9LVl/oLyVPSSwT.g8q4TwP6adG7PodDPILGcsmmcymJtHm','FLORIAN',3,NULL),(25,'polo@gmail.com','$2y$10$0HL7LW0vaxP.rVxwxxlIsOxQapA07IebrsofA8dhmEQtO5AAtygly','Polo',1,NULL),(27,'HELLO@hello.com','$2y$10$AdOMB.vxY95WNqVYxW..keJvN/CvSymUab/br0VGLCu34OJ1UxhU2','HELLO',1,NULL),(36,'flor@flor.com','$2y$10$8fWxS20L4lY/2h6tlEUH6.MunjS5DnhBOmbVUlUx9p6BnxNR8M4IK','florian',1,NULL),(38,'marcANT@gmail.com','$2y$10$n0vAPIHnOoZCIpKGyeACSOTgmyjWBJXSWT7QSsAha/X5vw5uKSHZK','MARCO',1,NULL);
-/*!40000 ALTER TABLE `profil` ENABLE KEYS */;
+LOCK TABLES `file` WRITE;
+/*!40000 ALTER TABLE `file` DISABLE KEYS */;
+INSERT INTO `file` VALUES (39,'64a5659fdf4054.85232836.png',126),(43,'64a57f55c85ee1.79569794.png',132),(44,'64a57f8b3bd2e9.71240162.png',133),(45,'64a57ffb970f16.02561760.png',134);
+/*!40000 ALTER TABLE `file` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -57,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-06 11:36:19
+-- Dump completed on 2023-07-06 11:36:18

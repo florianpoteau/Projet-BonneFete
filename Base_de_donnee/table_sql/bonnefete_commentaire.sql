@@ -33,7 +33,7 @@ CREATE TABLE `commentaire` (
   KEY `id_profil_idx` (`id_profil`),
   CONSTRAINT `id_profil_commentaire` FOREIGN KEY (`id_profil`) REFERENCES `profil` (`id_profil`),
   CONSTRAINT `idpost_commentaire` FOREIGN KEY (`idpost`) REFERENCES `post` (`idpost`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `commentaire` (
 
 LOCK TABLES `commentaire` WRITE;
 /*!40000 ALTER TABLE `commentaire` DISABLE KEYS */;
-INSERT INTO `commentaire` VALUES (2,54,21,'hello','2023-07-02'),(5,57,22,'OH, en plus on peut commenter les posts. incroyable!!','2023-07-03'),(6,60,27,'Salut','2023-07-03'),(7,60,22,'salut','2023-07-03'),(8,65,31,'Salut, oh bah tien on a le même nom !','2023-07-03'),(9,75,38,'salut, ca va?','2023-07-04');
+INSERT INTO `commentaire` VALUES (2,54,21,'hello','2023-07-02'),(14,126,21,'hola','2023-07-05');
 /*!40000 ALTER TABLE `commentaire` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-04 11:47:58
+-- Dump completed on 2023-07-06 11:36:19
