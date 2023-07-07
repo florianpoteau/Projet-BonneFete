@@ -218,6 +218,9 @@
                 </div>
             </div>
         <?php } ?>
+
+        <br>
+        <br>
     </body>
 
     <?php require_once 'Views/foot.php'; ?>
