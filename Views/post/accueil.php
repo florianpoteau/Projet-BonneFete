@@ -14,7 +14,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="card mt-5">
-                        <<div class="card-body">
+                        <div class="card-body">
                             <h2 class="card-title text-center text-Montserrat">Ajouter un post</h2>
 
                             <form action="../profil/accueil" method="post" enctype="multipart/form-data">
@@ -82,42 +82,6 @@
 
                         <br>
 
-                        <?php if ($_SESSION['id_role'] == 2 || $_SESSION['id_role'] == 3 || $_SESSION['id_profil'] == $profil->getId()) { ?>
-
-
-
-                            <button type="button" class="btn btn-primary" style="margin-right: 1%;" data-toggle="modal" data-target="#myModal<?php echo $profil->idpost ?>">
-                                Modifier
-                            </button>
-
-                            <!-- Bouton supprimer pour les posts -->
-
-                            <form action="../profil/delete" method="post" class="d-inline-block">
-
-                                <button type="submit" class="btn btn-danger">Supprimer</button>
-                                <input type="hidden" name="idpost" value="<?php echo $profil->idpost ?>">
-
-
-                            </form>
-
-                        <?php } ?>
-                        <br class="d-sm-none">
-                        <br class="d-sm-none">
-
-                        <!-- Bouton "Voir profil" -->
-                        <button type="button" class="btn btn-warning" style="margin-right: 1%;margin-left: 1%;" data-toggle="modal" data-target="#profileModal<?php echo $profil->getId() ?>" data-id="<?php echo $profil->getId() ?>">
-                            Voir profil
-                        </button>
-
-                        <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#commentCollapse<?php echo $profil->idpost ?>">
-                            Commenter
-                        </button>
-
-
-                        <img src="" alt="">
-                        <br>
-                        <br>
-
                         <?php
                         // Vérifier si l'utilisateur a déjà liké ce post
                         $hasLiked = $this->profilModel->hasLikedPost(['idpost' => $profil->idpost, 'id_profil' => $_SESSION['id_profil']]); ?>
@@ -171,11 +135,47 @@
                         ?>
 
 
-                        <p><?php echo $likes ?> personnes ont liké ceci</p>
+                        <p><?php echo $likes ?> like(s)</p>
 
 
 
                         <br>
+                        <?php if ($_SESSION['id_role'] == 2 || $_SESSION['id_role'] == 3 || $_SESSION['id_profil'] == $profil->getId()) { ?>
+
+
+
+                            <button type="button" class="btn btn-primary" style="margin-right: 1%;" data-toggle="modal" data-target="#myModal<?php echo $profil->idpost ?>">
+                                Modifier
+                            </button>
+
+                            <!-- Bouton supprimer pour les posts -->
+
+                            <form action="../profil/delete" method="post" class="d-inline-block">
+
+                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                                <input type="hidden" name="idpost" value="<?php echo $profil->idpost ?>">
+
+
+                            </form>
+
+                        <?php } ?>
+                        <br class="d-sm-none">
+                        <br class="d-sm-none">
+
+                        <!-- Bouton "Voir profil" -->
+                        <button type="button" class="btn btn-warning" style="margin-right: 1%;margin-left: 1%;" data-toggle="modal" data-target="#profileModal<?php echo $profil->getId() ?>" data-id="<?php echo $profil->getId() ?>">
+                            Voir profil
+                        </button>
+
+                        <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#commentCollapse<?php echo $profil->idpost ?>">
+                            Commenter
+                        </button>
+
+
+                        <img src="" alt="">
+                        <br>
+                        <br>
+
 
                         <!-- Sous commentaire -->
                         <p class="card-text text-right"><?php echo "Posté le " . $profil->date_post ?></p>
