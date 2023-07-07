@@ -14,7 +14,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="card mt-5">
-                        <div class="card-body">
+                        <<div class="card-body">
                             <h2 class="card-title text-center text-Montserrat">Ajouter un post</h2>
 
                             <form action="../profil/accueil" method="post" enctype="multipart/form-data">
@@ -59,7 +59,7 @@
             <?php foreach ($profils as $profil) { ?>
 
                 <div class="card text-center mx-auto mt-5 col-8">
-                    <div class=" card-body">
+                    <div class="card-body" style="background-color: #a1d2ce ;">
 
                         <?php if ($profil->getId() == $_SESSION['id_profil']) { ?>
                             <p class="card-text">Vous avez posté :</p>
