@@ -12,7 +12,7 @@
 
     <h2>1. Utilisation du site</h2>
     <p>
-        1.1 Vous devez avoir au moins [âge minimum] ans pour utiliser le site.<br>
+        1.1 Vous devez avoir au moins 13 ans pour utiliser le site.<br>
         1.2 Vous acceptez d'utiliser le site uniquement à des fins légales et conformément à ces conditions d'utilisation.<br>
         1.3 Vous êtes responsable de maintenir la confidentialité de votre compte et de votre mot de passe, et vous acceptez d'accepter toute responsabilité découlant de l'utilisation de votre compte.<br>
         1.4 Vous acceptez de ne pas utiliser le site de manière à perturber, endommager ou compromettre son fonctionnement ou sa sécurité.<br>
@@ -21,7 +21,7 @@
 
     <h2>2. Propriété intellectuelle</h2>
     <p>
-        2.1 Le contenu du site, y compris mais sans s'y limiter, les textes, les graphiques, les logos, les images, les clips audio, les téléchargements numériques et les logiciels, est la propriété de [Nom de l'entreprise] ou de ses concédants de licence et est protégé par les lois sur la propriété intellectuelle.<br>
+        2.1 Le contenu du site, y compris mais sans s'y limiter, les textes, les graphiques, les logos, les images, les clips audio, les téléchargements numériques et les logiciels, est la propriété de BonneFete ou de ses concédants de licence et est protégé par les lois sur la propriété intellectuelle.<br>
         2.2 Vous acceptez de ne pas reproduire, distribuer, modifier, afficher publiquement, transmettre ou exploiter de quelque manière que ce soit le contenu du site sans notre autorisation écrite préalable.
     </p>
 
