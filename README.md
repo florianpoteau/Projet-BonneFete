@@ -14,11 +14,11 @@ Pour ce site web, il vous faut
 
 <ul>
 
-<li>Une base de donnée MySQL</li>
+<li>Importez les tables de la base de donnée MySQL se trouvant dans le dossier table_sql</li>
 
-<li>Composer</li>
+<li>Pour Composer, écrivez composer init dans le terminal du projet.</li>
 
-<li>Xampp avec dans le dossier htdocs, le dossier racine du site</li>
+<li>Après l'installation de Xampp dans le dossier htdocs, le dossier racine du site</li>
 
 <li>Activer le serveur Apache dans Xampp-control.exe</li>
 
