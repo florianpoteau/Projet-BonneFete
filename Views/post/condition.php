@@ -1,10 +1,13 @@
 <?php require_once 'Views/head.php'; ?>
 
+<?php require_once 'Views/navbar.php' ?>'
+
 <title>Condition d'utilisation</title>
 
 </head>
 
-<body>
+<body style="background-color: black; color: white" class="text-open-sans">
+
     <h1>Conditions d'utilisation</h1>
 
     <h2>1. Utilisation du site</h2>

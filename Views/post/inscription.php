@@ -39,6 +39,16 @@
 
               <br>
 
+              <div class="form-group">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="accepter_conditions" name="accepter_conditions" required>
+                  <label class="form-check-label" for="accepter_conditions">J'accepte les conditions d'utilisation</label>
+                </div>
+              </div>
+
+
+              <br>
+
               <div class="text-center">
 
                 <button type="submit" class="btn btn-primary btn-block">S'inscrire</button>
@@ -56,7 +66,7 @@
     </div>
   </div>
 
-  <?php require_once 'Views/foot.php' ?>
+
 </body>
 
 </html>

@@ -57,7 +57,7 @@ if (isset($_SESSION['nom_profil'])) {
         </div>
     </div>
 
-    <?php require_once 'Views/foot.php' ?>
+
 </body>
 
 </html>
