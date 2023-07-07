@@ -253,4 +253,9 @@ class ProfilController
         $logs = $this->profilModel->getAllLog();
         require_once 'Views/post/log.php';
     }
+
+    public function getUtilisation()
+    {
+        require_once 'Views/post/condition.php';
+    }
 }
