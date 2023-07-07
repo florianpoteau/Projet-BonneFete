@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- container gauche -->
-                <div class="col-lg-9">
+                <div class="col-lg-9 order-1">
                     <div class="wrapper">
                         <div class="row flex-wrap">
                             <?php if (!empty($posts)) { // Si des posts existent
@@ -40,8 +40,8 @@
                     </div>
                 </div>
                 <!-- container droit -->
-                <div class="col-lg-3">
-                    <div class="input-group mt-3 mb-3">
+                <div class="col-lg-3 order-lg-2">
+                    <div class="input-group mt-3 mb-3 order-lg-1">
                         <input type="text" class="form-control" placeholder="Recherche pseudo" id="pseudoSearch">
                     </div>
                     <div class="wrapper-right">
@@ -178,6 +178,5 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
         <?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\post\recherche.php' ?>
-        <?php require_once 'C:\xampp\htdocs\Projet-BonneFete\Views\foot.php'; ?>
 
     <?php } ?>
