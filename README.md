@@ -46,5 +46,3 @@ Marc-Antoine Taisant https://github.com/Weldarn
 - Les modérateurs ne peuvent modifier que le rôle de l'utilisateur.
 - Les utilisateurs peuvent voir, créer, modifier et supprimer leur propre profil.
 - Les modérateurs peuvent supprimer un post d'un autre utilisateur et voir/modifier/supprimer le profil d'un autre utilisateur.
-
-Notez que ce projet est toujours en développement et pourrait changer à mesure que nous le perfectionnons.
