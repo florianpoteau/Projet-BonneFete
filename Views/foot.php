@@ -3,8 +3,8 @@
 <footer style="background-color:#5e2d31; height: 100px;">
     <div class="container-fluid">
         <div class="row">
-        <div class="col-12 text-decoration-none" style="display: flex; align-items: center; justify-content: center;">
-                <a href="../profil/utilisation">Conditions d'utilisation</a>
+            <div class="col-12 text-decoration-none" style="display: flex; align-items: center; justify-content: center; margin-top: 2%; text-decoration: none;">
+                <a href="../profil/utilisation" class="text-decoration-none text-white">Conditions d'utilisation</a>
             </div>
         </div>
     </div>

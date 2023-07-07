@@ -47,6 +47,3 @@
     <p>
         Si vous avez des questions concernant ces conditions d'utilisation, veuillez nous contacter à <a href="mailto:contact@exemple.com">contact@exemple.com</a>.
     </p>
-
-
-    <?php require_once 'Views/foot.php' ?>
