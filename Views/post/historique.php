@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- container gauche -->
-                <div class="col-lg-9 order-lg-2">
+                <div class="col-lg-9">
                     <div class="wrapper">
                         <div class="row flex-wrap">
                             <?php if (!empty($posts)) { // Si des posts existent
@@ -41,7 +41,7 @@
                 </div>
                 <!-- container droit -->
                 <div class="col-lg-3">
-                    <div class="input-group mt-3 mb-3 order-lg-1">
+                    <div class="input-group mt-3 mb-3">
                         <input type="text" class="form-control" placeholder="Recherche pseudo" id="pseudoSearch">
                     </div>
                     <div class="wrapper-right">
